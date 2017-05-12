@@ -28,32 +28,32 @@ expectedOutputData:
       groupedMatches:
         BOILERPLATE_EXTRACTED_SIGNATURES:
         - expectedContentFile: "CAF_5014/RE CAF Quality Working\
-            \ Group  Code Review.txt-signatures/RE CAF Quality\
-            \ Working Group  Code Review Tool Follow-up Notes.txt.signature1"
+            \ Group Email.txt-signatures/RE CAF Quality\
+            \ Working Group Email.txt.signature1"
           expectedSimilarityPercentage: 100
           comparisonType: "BINARY"
         - expectedContentFile: "CAF_5014/RE CAF Quality Working\
-            \ Group  Code Review.txt-signatures/RE CAF Quality\
-            \ Working Group  Code Review Tool Follow-up Notes.txt.signature2"
+            \ Group Email.txt-signatures/RE CAF Quality\
+            \ Working Group Email.txt.signature2"
           expectedSimilarityPercentage: 100
           comparisonType: "BINARY"
         - expectedContentFile: "CAF_5014/RE CAF Quality Working\
-            \ Group  Code Review.txt-signatures/RE CAF Quality\
-            \ Working Group  Code Review Tool Follow-up Notes.txt.signature3"
+            \ Group Email.txt-signatures/RE CAF Quality\
+            \ Working Group Email.txt.signature3"
           expectedSimilarityPercentage: 100
           comparisonType: "BINARY"
         - expectedContentFile: "CAF_5014/RE CAF Quality Working\
-            \ Group  Code Review.txt-signatures/RE CAF Quality\
-            \ Working Group  Code Review Tool Follow-up Notes.txt.signature4"
+            \ Group Email.txt-signatures/RE CAF Quality\
+            \ Working Group Email.txt.signature4"
           expectedSimilarityPercentage: 100
           comparisonType: "BINARY"
         - expectedContentFile: "CAF_5014/RE CAF Quality Working\
-            \ Group  Code Review.txt-signatures/RE CAF Quality\
-            \ Working Group  Code Review Tool Follow-up Notes.txt.signature5"
+            \ Group Email.txt-signatures/RE CAF Quality\
+            \ Working Group Email.txt.signature5"
           expectedSimilarityPercentage: 100
           comparisonType: "BINARY"
         - expectedContentFile: "CAF_5014/RE CAF Quality Working\
-            \ Group  Code Review.txt-signatures/RE CAF Quality\
-            \ Working Group  Code Review Tool Follow-up Notes.txt.signature6"
+            \ Group Email.txt-signatures/RE CAF Quality\
+            \ Working Group Email.txt.signature6"
           expectedSimilarityPercentage: 100
           comparisonType: "BINARY"
