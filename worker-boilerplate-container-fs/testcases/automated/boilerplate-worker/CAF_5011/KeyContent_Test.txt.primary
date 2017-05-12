@@ -1,0 +1,17 @@
+From: Hardy, Dermot
+Sent: Mon May 23 20:32:34 2016
+To: Bryson, Michael; Reid, Andy; Ploch, Krzysztof; McAlynn, Michael
+Subject: RE: GitHub Umbrella repository
+Importance: Normal
+Attachments: image001.jpg
+
+If I understand it right using subtrees is basically having a copy of
+the files in the central repository – again I think it would cause more
+confusion than it would solve (with the code being is multiple places
+and the merges that need to take place etc.)
+
+ 
+
+ 
+
+

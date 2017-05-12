@@ -1,0 +1,85 @@
+From: Hardy, Dermot
+Sent: Mon May 23 20:32:34 2016
+To: Bryson, Michael; Reid, Andy; Ploch, Krzysztof; McAlynn, Michael
+Subject: RE: GitHub Umbrella repository
+Importance: Normal
+Attachments: image001.jpg
+
+If I understand it right using subtrees is basically having a copy of
+the files in the central repository – again I think it would cause more
+confusion than it would solve (with the code being is multiple places
+and the merges that need to take place etc.)
+
+ 
+
+ 
+
+
+From: Bryson, Michael 
+Sent: 23 May 2016 3:18 PM
+To: Hardy, Dermot <dermot.hardy@hpe.com>; Reid, Andy
+<andrew.reid@hpe.com>; Ploch, Krzysztof <krzysztof.ploch@hpe.com>;
+McAlynn, Michael <michael.mcalynn@hpe.com>
+Subject: RE: GitHub Umbrella repository
+
+ 
+
+I found this article on using subtrees instead of submodules, not sure
+if it is of use but thought I would share anyway:
+
+http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-su
+btree/
+
+ 
+
+ 
+
+ 
+
+
+From: Hardy, Dermot 
+Sent: 23 May 2016 15:03
+To: Reid, Andy <andrew.reid@hpe.com <mailto:andrew.reid@hpe.com> >;
+Bryson, Michael <michael.bryson@hpe.com <mailto:michael.bryson@hpe.com>
+>; Ploch, Krzysztof <krzysztof.ploch@hpe.com
+<mailto:krzysztof.ploch@hpe.com> >; McAlynn, Michael
+<michael.mcalynn@hpe.com <mailto:michael.mcalynn@hpe.com> >
+Subject: RE: GitHub Umbrella repository
+
+ 
+
+We can try it but my gut feeling is that it that would be complex to
+manage and actually cause more confusion than it solves – because (1) it
+will make it look like the projects are missing if you don’t use a
+particular git clone option, and (2) any updates make when you browse
+through to the sub-module will not automatically appear when you browse
+again because the main projects is still linked to a particular earlier
+commit.
+
+ 
+
+ 
+
+
+From: Reid, Andy 
+Sent: 23 May 2016 2:56 PM
+To: Bryson, Michael <michael.bryson@hpe.com
+<mailto:michael.bryson@hpe.com> >; Hardy, Dermot <dermot.hardy@hpe.com
+<mailto:dermot.hardy@hpe.com> >; Ploch, Krzysztof
+<krzysztof.ploch@hpe.com <mailto:krzysztof.ploch@hpe.com> >; McAlynn,
+Michael <michael.mcalynn@hpe.com <mailto:michael.mcalynn@hpe.com> >
+Subject: RE: GitHub Umbrella repository
+
+ 
+
+Apologies for taking a ridiculous amount of time to reply.
+
+ 
+
+This looks nice, I’m wondering if we should consider using sub modules
+to tie snapshots of the dependent repos into a release of the umbrella
+repo. Dermot what do you think? Unnecessary?
+
+ 
+
+

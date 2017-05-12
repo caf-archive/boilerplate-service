@@ -1,0 +1,472 @@
+#
+# Copyright 2015-2017 Hewlett Packard Enterprise Development LP.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+---
+  swagger: "2.0"
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+  info:
+    version: "v1"
+    title: "Boilerplate Service"
+    description: |
+        The Boilerplate API is used to create, retrieve, update and delete boilerplate expressions and tags.
+        The API has CRUD methods for two objects - boilerplate expressions and tags.
+        A boilerplate expression consists of a name, description, expression, replacement text and a list of tags.
+        A tag consist of a name, description and default replacement text.
+        A boilerplate expression can have many tags and it can be used in multiple different tags.
+        All calls take in a project_id which uniquely identifies the project.
+  tags:
+    -
+      name: "Boilerplate"
+  schemes:
+    - "http"
+    - "https"
+  basePath: /boilerplateapi
+
+  paths:
+    /boilerplate/expression:
+      post:
+        tags:
+          - "Boilerplate"
+        summary: "Creates an expression"
+        description: "Used to create an expression in the Boilerplate PostgreSQL database."
+        operationId: "createExpression"
+        parameters:
+          -
+            in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/BoilerplateExpression"
+            description: JSON body which specifies the values of the expression.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: ID of the project to add an expression.
+        responses:
+          201:
+            description: "Successful operation"
+          400:
+            description: "Invalid request (Boilerplate expression sent is invalid)"
+          500:
+            description: "Could not execute statement (Check that required fields in body are present)"
+        security:
+          -
+            api_key: []
+    /boilerplate/expression/{id}:
+      get:
+        tags:
+          - "Boilerplate"
+        summary: "Gets a BoilerplateExpression by ID"
+        description: "Used to get a Boilerplate Expression defined by the ID parameter."
+        operationId: "getExpression"
+        parameters:
+          -
+            name: "id"
+            in: "path"
+            required: true
+            type: "integer"
+            format: "int64"
+            description: Id of the expression.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: Id of the project containing the expression.
+        responses:
+          200:
+            description: "Successful operation"
+          404:
+            description: "Expression not found (check expression id)"
+        security:
+          -
+            api_key: []
+      put:
+        tags:
+          - "Boilerplate"
+        summary: "Updates an expression"
+        description: "Used to update the Boilerplate Expression specified by the ID. The updated values are specified in the body."
+        operationId: "updateExpression"
+        parameters:
+          -
+            in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/BoilerplateExpression"
+            description: JSON body which specifies the updated values of the expression.
+          -
+            name: "id"
+            in: "path"
+            required: true
+            type: "integer"
+            format: "int64"
+            description: Id of the expression to be updated.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: Id of the project with the expression to be updated.
+        responses:
+          200:
+            description: "Successful operation"
+          404:
+            description: "Expression not found (check expression id)"
+          500:
+            description: "Could not execute statement (Check that required fields in body are present)"
+        security:
+          -
+            api_key: []
+      delete:
+        tags:
+          - "Boilerplate"
+        summary: "Deletes an expression"
+        description: "Used to delete an expression from the PostgreSQL database."
+        operationId: "deleteExpression"
+        parameters:
+          -
+            name: "id"
+            in: "path"
+            required: true
+            type: "integer"
+            format: "int64"
+            description: ID of the expression you wish to delete.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: ID of the project with the expression to be deleted.
+        responses:
+          200:
+            description: "Successful operation"
+          404:
+            description: "Expression not found (check expression id)"
+        security:
+          -
+            api_key: []
+    /boilerplate/expression/{id}/tags:
+      get:
+        tags:
+          - "Boilerplate"
+        summary: "Gets the Tags used by an expression"
+        description: "Get a list of all the tags used by the expression specified by the ID."
+        operationId: "getTagsByExpression"
+        parameters:
+          -
+            name: "id"
+            in: "path"
+            required: true
+            type: "integer"
+            format: "int64"
+            description: List the tags used by the expression with this ID.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: Id of the project containing the expression.
+        responses:
+          200:
+            description: "Successful operation"
+        security:
+          -
+            api_key: []
+    /boilerplate/expressions:
+      get:
+        tags:
+          - "Boilerplate"
+        summary: "Gets a list of BoilerplateExpressions"
+        description: "Used to list all the boilerplate expressions in the project."
+        operationId: "getExpressions"
+        parameters:
+          -
+            name: "page"
+            in: "query"
+            required: true
+            type: "integer"
+            format: "int32"
+            description: The page of results to show.
+          -
+            name: "size"
+            in: "query"
+            required: false
+            type: "integer"
+            format: "int32"
+            description: The number of results per page.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: List the expressions associated with this project ID.
+        responses:
+          200:
+            description: "Successful operation"
+        security:
+          -
+            api_key: []
+    /boilerplate/tag:
+      post:
+        tags:
+          - "Boilerplate"
+        summary: "Creates a tag"
+        description: "Create a tag associated with one or more boilerplate expressions. The values of the tag are specified in the body. The expressions associated with the tag are specified in the boilerplateExpressions array."
+        operationId: "createTag"
+        parameters:
+          -
+            in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/Tag"
+            description: JSON body which specifies the values of the tag.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: ID of the project in which to create the tag.
+        responses:
+          201:
+            description: "Successful operation"
+          404:
+            description: "Boilerplate Expression not found (check boilerplate expressions listed in body)"
+        security:
+          - api_key: []
+    /boilerplate/tag/{id}:
+      get:
+        tags:
+          - "Boilerplate"
+        summary: "Get tag by ID"
+        description: "Get the tag specified by the ID."
+        operationId: "getTag"
+        parameters:
+          -
+            name: "id"
+            in: "path"
+            required: true
+            type: "integer"
+            format: "int64"
+            description: Id of the tag.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: ID of the project from which to get the tag.
+        responses:
+          200:
+            description: "Successful operation"
+          404:
+            description: "Unsuccessful, tag not found (check tag id)"
+        security:
+          -
+            api_key: []
+      put:
+        tags:
+          - "Boilerplate"
+        summary: "Updates a tag"
+        description: "Update the tag specified by ID. The values are specified in the body."
+        operationId: "updateTag"
+        parameters:
+          -
+            in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/Tag"
+            description: JSON body which specifies the updated values of the tag.
+          -
+            name: "id"
+            in: "path"
+            required: true
+            type: "integer"
+            format: "int64"
+            description: ID of the tag to update.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: ID of the project containing the tag to update.
+        responses:
+          200:
+            description: "Successful operation"
+          404:
+            description: "Unsuccessful, tag not found (check tag id)"
+        security:
+          -
+            api_key: []
+      delete:
+        tags:
+          - "Boilerplate"
+        summary: "Deletes a tag"
+        description: "Delete a tag from the PostgreSQL database."
+        operationId: "deleteTag"
+        parameters:
+          -
+            name: "id"
+            in: "path"
+            required: true
+            type: "integer"
+            format: "int64"
+            description: ID of the tag to delete.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: ID of the project with the tag to delete.
+        responses:
+          200:
+            description: "Successful operation"
+          404:
+            description: "Unsuccessful, tag not found (check tag id)"
+        security:
+          -
+            api_key: []
+    /boilerplate/tag/{id}/expressions:
+      get:
+        tags:
+          - "Boilerplate"
+        summary: "Gets a page of expressions for a tag"
+        description: "List the expressions associated with a tag. The tag is specified by the ID. Use the page number to control which page of results and size to control how many results per page."
+        operationId: "getExpressionsByTagPaged"
+        parameters:
+          -
+            name: "id"
+            in: "path"
+            required: true
+            type: "integer"
+            format: "int64"
+            description: ID of the tag.
+          -
+            name: "page"
+            in: "query"
+            required: false
+            type: "integer"
+            format: "int32"
+            description: The page of results to show.
+          -
+            name: "size"
+            in: "query"
+            required: false
+            type: "integer"
+            format: "int32"
+            description: The number of results per page.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: ID of the project containing the tag.
+        responses:
+          200:
+            description: "Successful operation"
+          404:
+            description: "Unsuccessful, tag not found (check tag id)"
+        security:
+          -
+            api_key: []
+    /boilerplate/tags:
+      get:
+        tags:
+          - "Boilerplate"
+        summary: "Gets all the tags or a page of tags"
+        description: "Get all the tags in the project specified by project_id."
+        operationId: "getTags"
+        parameters:
+          -
+            name: "page"
+            in: "query"
+            required: false
+            type: "integer"
+            format: "int32"
+            description: The page of results to show.
+          -
+            name: "size"
+            in: "query"
+            required: false
+            type: "integer"
+            format: "int32"
+            description: The number of results per page.
+          -
+            name: "project_id"
+            in: "query"
+            required: true
+            type: "string"
+            description: Id of the project containing the tags.
+        responses:
+          200:
+            description: "Successful operation"
+        security:
+          -
+            api_key: []
+  securityDefinitions:
+    api_key:
+      type: "apiKey"
+      name: "project_id"
+      in: "query"
+  definitions:
+    BoilerplateExpression:
+      type: "object"
+      description: A boilerplate expression used to identify boilerplate text.
+      required:
+        - name
+        - expression
+      properties:
+        name:
+          type: "string"
+          description: The name of the expression
+        description:
+          type: "string"
+          description: The description for the boilerplate expression
+        replacementText:
+          type: "string"
+          description: The string to replace the text with
+        expression:
+          type: "string"
+          description: The regular expression which identifies the boilerplate text
+          required: true
+    Tag:
+      type: "object"
+      description: A tag associates boilerplate expressions.
+      required:
+        - name
+        - boilerplateExpressions
+      properties:
+        name:
+          type: "string"
+          description: The name of the boilerplate expression
+        description:
+          type: "string"
+          description: The description of the Tag
+        defaultReplacementText:
+          type: "string"
+          description: The default replacement text for this tag
+        boilerplateExpressions:
+          type: "array"
+          description: An array containing the IDs of the boilerplate expressions associated with the tag
+          items:
+            type: "integer"
+            format: "int64"

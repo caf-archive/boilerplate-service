@@ -1,0 +1,26 @@
+---
+tag: "input/LargeFile.txt"
+inputData:
+  useDataStore: true
+  containerId: "0a1b8e24cc44490888b3d8d8ebba8309"
+  inputFile: "input/LargeFile.txt"
+  tenantId: "1"
+  expressions:
+    expressionIds:
+    - 1
+  sourceData: {}
+  redactionType: "REPLACE"
+  returnMatches: true
+expectedOutputData:
+  expectedContentFile: null
+  expectedSimilarityPercentage: 0
+  comparisonType: "TEXT"
+  taskResults:
+    CONTENT:
+      data:
+      - expectedContentFile: "input/LargeFile.txt.content"
+        expectedSimilarityPercentage: 100
+        comparisonType: "BINARY"
+      matches:
+      - boilerplateId: 1
+        value: "HP Ltd"

@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2015-2017 Hewlett Packard Enterprise Development LP.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.cafdataprocessing</groupId>
+        <artifactId>boilerplate-service-aggregator</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.github.cafdataprocessing</groupId>
+    <artifactId>worker-boilerplate-container-fs</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <caf.worker-store.impl>worker-store-fs</caf.worker-store.impl>
+        <worker-boilerplate.container.name>rh7-artifactory.svs.hpeswlab.net:8443/caf/worker-boilerplate-fs:${project.version}</worker-boilerplate.container.name>
+        <worker-boilerplate.container.alias>boilerplate-worker-fs</worker-boilerplate.container.alias>
+        <caf.config.impl>config-file</caf.config.impl>
+        <caf.codec.impl>codec-json</caf.codec.impl>
+        <caf.worker-queue.impl>worker-queue-rabbit</caf.worker-queue.impl>
+        <deployFileUrl>${project.distributionManagement.snapshotRepository.url}</deployFileUrl>
+        <repositoryId>${project.distributionManagement.snapshotRepository.id}</repositoryId>
+
+        <!-- location of test data to be used by tests ran via worker-tester framework -->
+        <test.data>${project.basedir}/test-data</test.data>
+        <tests.binary.content.location>${test.data}</tests.binary.content.location>
+
+        <!-- specify boilerplate database name for integration tests -->
+        <boilerplate.db.name>boilerplate</boilerplate.db.name>
+
+        <boilerplate.hibernate.connectionstring>
+            jdbc:postgresql://boilerplate-integrationtests-postgres:${postgres.db.port}/${boilerplate.db.name}
+        </boilerplate.hibernate.connectionstring>
+
+        <boilerplate.db.user>postgres</boilerplate.db.user>
+        <boilerplate.db.pass>root</boilerplate.db.pass>
+
+        <db.connection>jdbc:postgresql://boilerplate-integrationtests-postgres:${postgres.db.port}</db.connection>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.cafapi</groupId>
+            <artifactId>caf-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cafdataprocessing</groupId>
+            <artifactId>worker-boilerplate</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.workerframework</groupId>
+            <artifactId>${caf.worker-store.impl}</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.jersey</groupId>
+                    <artifactId>jersey-server</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cafapi.config</groupId>
+            <artifactId>${caf.config.impl}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.workerframework</groupId>
+            <artifactId>worker-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cafapi.decoder</groupId>
+            <artifactId>decoder-js</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.workerframework</groupId>
+            <artifactId>${caf.worker-queue.impl}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cafapi.codec</groupId>
+            <artifactId>${caf.codec.impl}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.krallin</groupId>
+            <artifactId>tini</artifactId>
+            <scope>runtime</scope>
+            <type>exe</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.github.cafdataprocessing</groupId>
+            <artifactId>util-email-content-segregation-script</artifactId>
+            <version>2.0.0-7</version>
+            <type>tar.gz</type>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.cafapi</groupId>
+            <artifactId>container-cert-script</artifactId>
+            <type>tar.gz</type>
+        </dependency>
+
+        <!-- Integration test dependencies -->
+        <dependency>
+            <groupId>com.github.workerframework</groupId>
+            <artifactId>worker-testing-util</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.workerframework</groupId>
+            <artifactId>worker-testing-integration</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cafdataprocessing</groupId>
+            <artifactId>worker-boilerplate-testing</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>use-default-fixed-ports</id>
+            <properties>
+                <worker.adminport>8081</worker.adminport>
+                <rabbitmq.node.port>5672</rabbitmq.node.port>
+                <rabbitmq.ctrl.port>15672</rabbitmq.ctrl.port>
+
+                <boilerplate.adminport>5555</boilerplate.adminport>
+                <postgres.db.port>5432</postgres.db.port>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <property>
+                    <name>RE_BUILD_TYPE</name>
+                    <value>continuous</value>
+                </property>
+            </activation>
+            <properties>
+                <failsafe.timeout>150000</failsafe.timeout>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>${fabric8.docker.maven.version}</version>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>nightly-test</id>
+            <activation>
+                <property>
+                    <name>RE_BUILD_TYPE</name>
+                    <value>release</value>
+                </property>
+            </activation>
+            <properties>
+                <test.data>${project.basedir}/testcases/automated/boilerplate-worker</test.data>
+                <!-- A property is created by the windows or linux nightly tests profiles to allow the nightly tests to pick
+                up binary content files from a remote location e.g. test.binary.content.basedir=/mnt/test-sources/ -->
+                <test.binary.content.location>${test.binary.content.basedir}boilerplate-test-data</test.binary.content.location>
+                <failsafe.timeout>120000</failsafe.timeout>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>${fabric8.docker.maven.version}</version>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <!-- properties used by worker-tester integration test framework -->
+                        <docker.host.address>${docker.host.address}</docker.host.address>
+                        <worker.adminport>${worker.adminport}</worker.adminport>
+                        <rabbitmq.node.port>${rabbitmq.node.port}</rabbitmq.node.port>
+                        <rabbitmq.ctrl.port>${rabbitmq.ctrl.port}</rabbitmq.ctrl.port>
+                        <input.folder>${test.data}</input.folder>
+                        <expected.folder>${test.data}</expected.folder>
+                        <test.sourcefile.base.folder>${test.binary.content.location}</test.sourcefile.base.folder>
+                        <datastore.enabled>false</datastore.enabled>
+
+                        <!-- boilerplate setup specific properties -->
+                        <boilerplate.adminport>${boilerplate.adminport}</boilerplate.adminport>
+                        <docker.host.address>${docker.host.address}</docker.host.address>
+                        <postgres.db.port>${postgres.db.port}</postgres.db.port>
+                        <timeout.ms>${failsafe.timeout}</timeout.ms>
+                    </systemPropertyVariables>
+                    <environmentVariables>
+                        <CAF_APPNAME>test/worker-boilerplate</CAF_APPNAME>
+                        <CAF_CONFIG_PATH>${project.basedir}/test-configs</CAF_CONFIG_PATH>
+                        <CAF_INTEGRATIONTESTS_FS_PATH>${caf.integrationtests.fs.path}</CAF_INTEGRATIONTESTS_FS_PATH>                       
+                        <!-- Environment variables needed for old style tests-->
+                        <rabbit.port>${rabbitmq.node.port}</rabbit.port>
+                        <rabbit.host>${docker.host.address}</rabbit.host>
+
+                        <!-- boilerplate api database connection details -->
+                        <hibernate.connectionstring>
+                            ${boilerplate.hibernate.connectionstring}
+                        </hibernate.connectionstring>
+                        <hibernate.user>${boilerplate.db.user}}</hibernate.user>
+                        <hibernate.password>${boilerplate.db.pass}</hibernate.password>
+                    </environmentVariables>
+                    <!--<debugForkedProcess>true</debugForkedProcess>-->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <executions>
+                    <execution>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.version}</version>
+                <executions>
+                    <execution>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testResources</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>process-config-files</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/config-files</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/config</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- Unpack the base worker configuration files -->
+                    <execution>
+                        <id>process-config-files</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.github.workerframework</groupId>
+                                    <artifactId>worker-default-configs</artifactId>
+                                    <outputDirectory>${project.build.directory}/config-files</outputDirectory>
+                                    <excludes>META-INF/**,cfg*StorageServiceDataStore*</excludes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${fabric8.docker.maven.version}</version>
+                <executions>
+                    <execution>
+                        <id>upload-docker-container</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                        <configuration>
+                            <filter>boilerplate-worker</filter>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <verbose>true</verbose>
+                    <autoPull>always</autoPull>
+                    <logDate>default</logDate>
+                    <images>
+                        <image>
+                            <alias>webdav</alias>
+                            <name>cloudesire/webdav</name>
+                            <run>
+                                <volumes>
+                                    <bind>
+                                        <volume>/srv/common/webdav</volume>
+                                    </bind>
+                                </volumes>
+                                <ports>
+                                    <port>${webdav.apache.port}:8080</port>
+                                </ports>
+                                <env>
+                                    <APACHE_PORT>8080</APACHE_PORT>
+                                </env>
+                                <wait>
+                                    <log>WebDAV Server startup complete</log>
+                                    <http>
+                                        <url>http://${docker.host.address}:${webdav.apache.port}</url>
+                                    </http>
+                                    <time>120000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                            </run>
+                        </image>
+                        <!-- Start Rabbit image -->
+                        <image>
+                            <alias>rabbitmq</alias>
+                            <name>rabbitmq:3-management</name>
+                            <run>
+                                <ports>
+                                    <port>${rabbitmq.ctrl.port}:15672</port>
+                                    <port>${rabbitmq.node.port}:5672</port>
+                                </ports>
+                                <wait>
+                                    <log>Server startup complete</log>
+                                    <http>
+                                        <url>http://${docker.host.address}:${rabbitmq.ctrl.port}</url>
+                                    </http>
+                                    <time>120000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                            </run>
+                        </image>
+                        <!-- End Rabbit image -->
+                        <!-- Start Config image -->
+                        <image>
+                            <alias>config</alias>
+                            <name>${project.artifactId}-test-config:${project.version}</name>
+                            <build>
+                                <assembly>
+                                    <basedir>/config</basedir>
+                                    <inline>
+                                        <fileSets>
+                                            <fileSet>
+                                                <directory>${project.basedir}/test-configs</directory>
+                                                <outputDirectory>/</outputDirectory>
+                                                <includes>
+                                                    <include>*</include>
+                                                </includes>
+                                            </fileSet>
+                                        </fileSets>
+                                    </inline>
+                                </assembly>
+                            </build>
+                        </image>
+                        <!-- End Config image -->
+
+                        <!-- Begin Boilerplate Database image -->
+                        <image>
+                            <alias>boilerplate-integrationtests-postgres</alias>
+                            <name>index.docker.io/postgres:9.4</name>
+                            <run>
+                                <ports>
+                                    <port>${postgres.db.port}:5432</port>
+                                </ports>
+                                <env>
+                                    <POSTGRES_PASSWORD>${boilerplate.db.pass}</POSTGRES_PASSWORD>
+                                    <POSTGRES_USER>${boilerplate.db.user}</POSTGRES_USER>
+                                    <POSTGRES_DB>${boilerplate.db.name}</POSTGRES_DB>
+                                </env>
+                                <wait>
+                                    <log>PostgreSQL init process complete</log>
+                                    <time>50000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                            </run>
+                        </image>
+                        <!-- End Boilerplate Database image -->
+
+                        <!-- Begin Boilerplate db install image -->
+                        <image>
+                            <alias>boilerplate-liquibase-container</alias>
+                            <name>rh7-artifactory.svs.hpeswlab.net:8443/caf/boilerplate-db-installer:${project.version}</name>
+                            <run>
+                                <links>
+                                    <link>boilerplate-integrationtests-postgres</link>
+                                </links>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                                <cmd>java -jar /boilerplate-db.jar -fd -db.user ${boilerplate.db.user} -db.pass ${boilerplate.db.pass} -db.name ${boilerplate.db.name} -db.connection jdbc:postgresql://boilerplate-integrationtests-postgres:5432 -log debug
+                                </cmd>
+                                <wait>
+                                    <log>DB update finished.</log>
+                                    <time>60000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                            </run>
+                        </image>
+                        <!-- End Boilerplate db install image -->
+
+                        <!-- Begin Boilerplate API image -->
+                        <image>
+                            <alias>boilerplate-api</alias>
+                            <name>rh7-artifactory.svs.hpeswlab.net:8443/caf/boilerplate-api:${project.version}</name>
+                            <run>
+                                <ports>
+                                    <port>${boilerplate.adminport}:8080</port>
+                                </ports>
+                                <env>
+                                    <hibernate.connectionstring>
+                                        jdbc:postgresql://boilerplate-integrationtests-postgres:5432/${boilerplate.db.name}
+                                    </hibernate.connectionstring>
+                                    <hibernate.user>${boilerplate.db.user}</hibernate.user>
+                                    <hibernate.password>${boilerplate.db.pass}</hibernate.password>
+                                </env>
+                                <links>
+                                    <link>boilerplate-integrationtests-postgres</link>
+                                </links>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                                <wait>
+                                    <http>
+                                        <url>
+                                            http://${docker.host.address}:${boilerplate.adminport}/boilerplateapi/boilerplate/checkhealth?project_id=1
+                                        </url>
+                                    </http>
+                                    <time>50000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                            </run>
+                        </image>
+                        <!-- End Boilerplate API image -->
+
+                        <!-- Start input data volume -->
+                        <image>
+                            <alias>util-data</alias>
+                            <name>${project.artifactId}-test-data:${project.version}</name>
+                            <build>
+                                <assembly>
+                                    <basedir>/util-data</basedir>
+                                    <inline>
+                                        <fileSets>
+                                            <fileSet>
+                                                <directory>${project.basedir}/util-data/test-input</directory>
+                                                <outputDirectory>/test-input</outputDirectory>
+                                                <includes>
+                                                    <include>*</include>
+                                                </includes>
+                                            </fileSet>
+                                        </fileSets>
+                                    </inline>
+                                </assembly>
+                            </build>
+                        </image>
+                        <!-- End input data volume -->
+
+                        <!-- Begin Boilerplate Creation image -->
+                        <image>
+                            <alias>boilerplate-creation-container</alias>
+                            <name>rh7-artifactory.svs.hpeswlab.net:8443/caf/boilerplate-creator:${project.version}</name>
+                            <run>
+                                <links>
+                                    <link>boilerplate-api</link>
+                                </links>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                                <cmd>java -Dboilerplateapi.url=http://boilerplate-api:8080/boilerplateapi -Dfile.input=/util-data/test-input/creation-data.json -Dfile.output=/util-data/test-output/creation-output.json -jar util-boilerplate-creation.jar
+                                </cmd>
+                                <volumes>
+                                    <from>
+                                        <image>util-data</image>
+                                    </from>
+                                </volumes>
+                                <wait>
+                                    <log>Creation completed successfully</log>
+                                    <time>120000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                            </run>
+                        </image>
+                        <!-- End Boilerplate Creation image -->
+
+                        <!-- Begin Boilerplate Worker image -->
+                        <image>
+                            <alias>boilerplate-worker</alias>
+                            <name>${worker-boilerplate.container.name}</name>
+                            <build>
+                                <from>rh7-artifactory.svs.hpeswlab.net:8443/caf/jep_talon-image:2.0.0-5</from>
+                                <maintainer>michael.mcalynn@hpe.com</maintainer>
+                                <ports>
+                                    <port>8080</port>
+                                    <port>8081</port>
+                                    <!--<port>5050</port>-->
+                                </ports>
+                                <labels>
+                                    <Build.Number>${project.version}</Build.Number>
+                                    <Build.Date>${maven.build.timestamp}</Build.Date>
+                                    <Git.Branch>${git.branch}</Git.Branch>
+                                    <Git.Commit>${git.revision}</Git.Commit>
+                                    <caf.worker-framework.version>${caf.worker-framework.version}
+                                    </caf.worker-framework.version>
+                                    <caf.worker-queue.impl>${caf.worker-queue.impl}</caf.worker-queue.impl>
+                                    <caf.worker-store.impl>${caf.worker-store.impl}</caf.worker-store.impl>
+                                    <caf.config.impl>${caf.config.impl}</caf.config.impl>
+                                    <caf.codec.impl>${caf.codec.impl}</caf.codec.impl>
+                                </labels>
+                                <entryPoint>
+                                    <exec>
+                                        <args>/maven/tini-${tini.version}.exe</args>
+                                        <args>-v</args>
+                                        <args>--</args>
+                                    </exec>
+                                </entryPoint>
+                                <cmd>/maven/worker.sh</cmd>
+                                <assembly>
+                                    <mode>tar</mode>
+                                    <inline>
+                                        <fileSets>
+                                            <fileSet>
+                                                <lineEnding>unix</lineEnding>
+                                                <includes>
+                                                    <include>worker.sh</include>
+                                                </includes>
+                                                <fileMode>0755</fileMode>
+                                            </fileSet>
+                                            <fileSet>
+                                                <lineEnding>unix</lineEnding>
+                                                <includes>
+                                                    <include>*.yaml</include>
+                                                </includes>
+                                            </fileSet>
+                                            <fileSet>
+                                                <directory>${project.build.directory}/config-files</directory>
+                                                <outputDirectory>config</outputDirectory>
+                                            </fileSet>
+                                        </fileSets>
+                                        <dependencySets>
+                                            <dependencySet>
+                                                <useProjectArtifact>false</useProjectArtifact>
+                                                <scope>runtime</scope>
+                                                <excludes>
+                                                    <exclude>com.github.krallin:tini</exclude>
+                                                    <exclude>com.github.cafapi:container-cert-script</exclude>
+                                                    <exclude>com.github.cafdataprocessing:util-email-content-segregation-script</exclude>
+                                                </excludes>
+                                            </dependencySet>
+                                            <dependencySet>
+                                                <useProjectArtifact>false</useProjectArtifact>
+                                                <useTransitiveFiltering>true</useTransitiveFiltering>
+                                                <unpack>true</unpack>
+                                                <includes>
+                                                    <include>com.github.cafapi:container-cert-script</include>
+                                                    <include>com.github.cafdataprocessing:util-email-content-segregation-script</include>
+                                                </includes>
+                                            </dependencySet>
+                                            <dependencySet>
+                                                <useProjectArtifact>false</useProjectArtifact>
+                                                <fileMode>0755</fileMode>
+                                                <includes>
+                                                    <include>com.github.krallin:tini</include>
+                                                </includes>
+                                            </dependencySet>
+                                        </dependencySets>
+                                    </inline>
+                                </assembly>
+                            </build>
+                            <run>
+                                <ports>
+                                    <port>${worker.adminport}:8081</port>
+                                    <port>${remote.debug}:5005</port>
+                                </ports>
+                                <env>
+                                    <CAF_APPNAME>test/worker-boilerplate</CAF_APPNAME>
+                                    <CAF_CONFIG_PATH>/config</CAF_CONFIG_PATH>
+                                    <!--<_JAVA_OPTIONS>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005</_JAVA_OPTIONS>-->
+                                </env>
+                                <volumes>
+                                    <from>
+                                        <image>config</image>
+                                        <image>webdav</image>
+                                    </from>
+                                </volumes>
+                                <links>
+                                    <link>rabbitmq</link>
+                                    <link>boilerplate-api</link>
+                                </links>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                                <wait>
+                                    <http>
+                                        <url>http://${docker.host.address}:${worker.adminport}</url>
+                                    </http>
+                                    <time>120000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                            </run>
+                        </image>
+                        <!-- End Boilerplate Worker image -->
+                    </images>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <excludes combine.children="append">
+                        <exclude>testcases/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

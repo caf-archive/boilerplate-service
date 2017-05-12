@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2015-2017 Hewlett Packard Enterprise Development LP.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<Configuration status="INFO">
+    <Appenders>
+        <RollingFile name="ErrorLog"
+                     fileName="/var/logs/boilerplate-api-web/web-error.log"
+                     filePattern="logs/$${date:yyyy-MM}/error-%d{MM-dd-yyyy}-%i.log.gz">
+            <!--<HTMLLayout title="logs"></HTMLLayout>-->
+            <PatternLayout>
+                <Pattern>%d %c [%t] %m %ex%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="WarningLog"
+                     fileName="/var/logs/boilerplate-api-web/web-warning.log"
+                     filePattern="logs/$${date:yyyy-MM}/warning-%d{MM-dd-yyyy}-%i.log.gz">
+            <!--<HTMLLayout title="logs"></HTMLLayout>-->
+            <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
+            <PatternLayout>
+                <Pattern>%d %c [%t] %m %ex%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="InfoLog"
+                     fileName="/var/logs/boilerplate-api-web/web-info.log"
+                     filePattern="logs/$${date:yyyy-MM}/info-%d{MM-dd-yyyy}-%i.log.gz">
+            <!--<HTMLLayout title="logs"></HTMLLayout>-->
+            <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="ACCEPT"/>
+            <PatternLayout>
+                <Pattern>%d %c{3.} %p [%t] %m %n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="DebugLog"
+                     fileName="/var/logs/boilerplate-api-web/web-debug.log"
+                     filePattern="logs/$${date:yyyy-MM}/info-%d{MM-dd-yyyy}-%i.log.gz">
+            <!--<HTMLLayout title="logs"></HTMLLayout>-->
+            <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="ACCEPT"/>
+            <PatternLayout>
+                <Pattern>%d %c{3.} %p [%t] %m %n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="TraceLog"
+                     fileName="/var/logs/boilerplate-api-web/web-trace.log"
+                     filePattern="logs/$${date:yyyy-MM}/info-%d{MM-dd-yyyy}-%i.log.gz">
+            <!--<HTMLLayout title="logs"></HTMLLayout>-->
+            <ThresholdFilter level="DEBUG" onMatch="DENY" onMismatch="ACCEPT"/>
+            <PatternLayout>
+                <Pattern>%d %c{3.} %p [%t] %m %n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+        </RollingFile>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="STDOUT" level="ALL"/>
+            <AppenderRef ref="ErrorLog" level="ERROR" />
+            <AppenderRef ref="WarningLog" level="WARN"/>
+            <AppenderRef ref="InfoLog" level="INFO"/>
+            <!--
+            <AppenderRef ref="DebugLog" level="DEBUG"/>
+            <AppenderRef ref="TraceLog" level="TRACE"/>
+            -->
+        </Root>
+    </Loggers>
+</Configuration>

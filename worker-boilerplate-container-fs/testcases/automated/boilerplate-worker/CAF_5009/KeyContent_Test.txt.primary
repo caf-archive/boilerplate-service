@@ -1,0 +1,62 @@
+From: Bryson, Michael 
+Sent: 29 April 2016 15:44
+To: Reid, Andy <andrew.reid@hpe.com <mailto:andrew.reid@hpe.com> >;
+Hardy, Dermot <dermot.hardy@hpe.com <mailto:dermot.hardy@hpe.com> >;
+Ploch, Krzysztof <krzysztof.ploch@hpe.com
+<mailto:krzysztof.ploch@hpe.com> >; McAlynn, Michael
+<michael.mcalynn@hpe.com <mailto:michael.mcalynn@hpe.com> >
+Subject: GitHub Umbrella repository
+
+ 
+
+Hi All,
+
+ 
+
+When you get a minute take a look at this repository?
+
+https://github.hpe.com/michael-bryson/caf-audit-management-service
+
+ 
+
+I have put this together as an example of what we could do with the
+umbrella repositories in GitHub. Basically the idea is to give a brief
+overview of the feature, in this case Auditing and each of the
+constituent components involved. There are links directly to the
+component projects so they are easy to find as well as a link the
+testcases for the feature. The Jenkins build status is also shown for
+each of the components.
+
+ 
+
+We could then add release notes etc. to this top level as we are
+releasing a full feature in most cases rather than components. We should
+still maintain detailed documentation on the individual components but
+with this top level it makes it easier to find.
+
+ 
+
+This is not a final draft so let me know what you think and if there is
+other stuff you think we could add here.
+
+ 
+
+Thanks
+
+ 
+
+Michael Bryson
+QA Engineer
+Software Engineering
+Big Data
+
+Belfast, N. Ireland
+michael.bryson@hpe.com <mailto:michael.bryson@hpe.com> 
+
+ <http://www.hpe.com/> 
+
+ 
+
+
+RE GitHu/image001.jpg
+

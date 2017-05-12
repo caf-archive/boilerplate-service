@@ -1,0 +1,28 @@
+---
+tag: "CAF_5003/NoMatch.txt"
+testCaseInformation:
+  testCaseId: "CAF_5003"
+  associatedTickets: "CAF-390"
+  description: "Replace boilerplate text from a document"
+  comments: "CAF_5003/NoMatch.txt"
+inputData:
+  useDataStore: true
+  containerId: "c82335049236404ba86529e9afacba39"
+  inputFile: "CAF_5003/NoMatch.txt"
+  tenantId: "1"
+  expressions:
+    tagId: 1
+  sourceData: {}
+  redactionType: "REPLACE"
+  returnMatches: true
+expectedOutputData:
+  expectedContentFile: null
+  expectedSimilarityPercentage: 0
+  comparisonType: "TEXT"
+  taskResults:
+    CONTENT:
+      data:
+      - expectedContentFile: "CAF_5003/NoMatch.txt.content"
+        expectedSimilarityPercentage: 100
+        comparisonType: "BINARY"
+      matches: []

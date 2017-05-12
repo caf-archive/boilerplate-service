@@ -1,0 +1,34 @@
+---
+tag: "CAF_5006/large_HP.txt"
+testCaseInformation:
+  testCaseId: "CAF_5006"
+  associatedTickets: "CAF-655"
+  description: "Replace boilerplate text from a large document"
+  comments: "CAF_5006/large_HP.txt"
+inputData:
+  useDataStore: true
+  containerId: "c82335049236404ba86529e9afacba39"
+  inputFile: "CAF_5006/large_HP.txt"
+  tenantId: "1"
+  expressions:
+    tagId: 2
+  sourceData: {}
+  redactionType: "REPLACE"
+  returnMatches: true
+expectedOutputData:
+  expectedContentFile: null
+  expectedSimilarityPercentage: 0
+  comparisonType: "TEXT"
+  taskResults:
+    CONTENT:
+      data:
+      - expectedContentFile: "CAF_5006/large_HP.txt.content"
+        expectedSimilarityPercentage: 100
+        comparisonType: "BINARY"
+      matches:
+      - boilerplateId: 3
+        value: "HPE"
+      - boilerplateId: 1
+        value: "HP Ltd"
+      - boilerplateId: 4
+        value: "Hewlett Packard Enterprise"

@@ -1,0 +1,22 @@
+{
+  "docker-registry": "rh7-artifactory.svs.hpeswlab.net:8443",
+  "marathon-group": "demo",
+  "force-pull": false,
+  "marathon-uris-root": "/vagrant",
+  "docker-login-config": "<MUST_REPLACE: Location of docker login config tar>",
+  
+  "boilerplate-admin-cpus": "0.5",
+  "boilerplate-admin-mem": "512",
+  "boilerplate-admin-instances": "1",
+  "boilerplate-admin-version": "1.12.0",
+  "boilerplate-admin-8080-serviceport": "23334",
+  "boilerplate-admin-healthcheck-graceperiodseconds": "300",
+  "boilerplate-admin-healthcheck-intervalseconds": "120",
+  "boilerplate-admin-healthcheck-maxconsecutivefailures": "5",
+  "boilerplate-admin-healthcheck-timeoutseconds": "20",
+  "boilerplate-admin-java-mem-min": "256",
+  "boilerplate-admin-java-mem-max": "256",
+  "boilerplate-admin-hibernate-connectionstring": "jdbc:postgresql://<MUST_REPLACE: Database Host>:5432/boilerplate?characterEncoding=UTF8&rewriteBatchedStatements=true",
+  "boilerplate-admin-hibernate-user": "<MUST_REPLACE: DATABASE USER e.g. root>",
+  "boilerplate-admin-hibernate-password": "<MUST_REPLACE: DATABASE PASSWORD e.g. sa>"
+}

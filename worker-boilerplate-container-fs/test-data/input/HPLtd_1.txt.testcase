@@ -1,0 +1,23 @@
+---
+tag: "input/HPLtd_1.txt"
+inputData:
+  useDataStore: true
+  containerId: "4a7848fe703a46149c3350d4c8dd55a7"
+  inputFile: "input/HPLtd_1.txt"
+  tenantId: "1"
+  expressions:
+    expressionIds:
+    - 1
+  sourceData: {}
+  redactionType: "DO_NOTHING"
+  returnMatches: true
+expectedOutputData:
+  expectedContentFile: null
+  expectedSimilarityPercentage: 0
+  comparisonType: "TEXT"
+  taskResults:
+    CONTENT:
+      data: null
+      matches:
+      - boilerplateId: 1
+        value: "HP Ltd"

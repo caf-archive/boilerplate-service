@@ -1,0 +1,7 @@
+{
+  "api_key": {
+    "type": "apiKey",
+    "name": "project_id",
+    "in": "query"
+  }
+}

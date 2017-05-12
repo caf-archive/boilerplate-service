@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2015-2017 Hewlett Packard Enterprise Development LP.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.cafdataprocessing</groupId>
+        <artifactId>boilerplate-service-aggregator</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.github.cafdataprocessing</groupId>
+    <artifactId>boilerplate-api</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>4.3.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.0.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <!--Db drivers-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1201-jdbc41</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.187</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <db.name>boilerplate</db.name>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <property>
+                    <name>RE_BUILD_TYPE</name>
+                    <value>continuous</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>${fabric8.docker.maven.version}</version>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>use-default-fixed-ports</id>
+            <properties>
+                <postgres.db.port>5432</postgres.db.port>
+                <db.connection>jdbc:postgresql://${docker.host.address}:${postgres.db.port}</db.connection>
+            </properties>
+        </profile>
+
+        <profile>
+                <id>nightly-test</id>
+                <activation>
+                    <property>
+                        <name>RE_BUILD_TYPE</name>
+                        <value>release</value>
+                </property>
+                </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven.failsafe.version}</version>
+                        <configuration>
+                            <!--Test are run in boilerplate-service build, and should be skipped in nightly build -->
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
+                <executions>
+                    <execution>
+                        <id>api-web-Docker</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <docker.host.address>${docker.host.address}</docker.host.address>
+                        <postgres.db.port>${postgres.db.port}</postgres.db.port>
+                    </systemPropertyVariables>
+                    <environmentVariables>
+                        <hibernate.connectionstring>
+                            jdbc:postgresql://${docker.host.address}:${postgres.db.port}/${db.name}
+                        </hibernate.connectionstring>
+                        <hibernate.user>postgres</hibernate.user>
+                        <hibernate.password>root</hibernate.password>
+                    </environmentVariables>
+                    <!--<debugForkedProcess>true</debugForkedProcess>-->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${fabric8.docker.maven.version}</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <autoPull>always</autoPull>
+                    <logDate>default</logDate>
+                    <images>
+                        <!-- pull in a normal postgres DB -->
+                        <image>
+                            <alias>boilerplate-integrationtests-postgres</alias>
+                            <name>index.docker.io/postgres:9.4</name>
+                            <run>
+                                <ports>
+                                    <port>${postgres.db.port}:5432</port>
+                                </ports>
+                                <env>
+                                    <POSTGRES_PASSWORD>root</POSTGRES_PASSWORD>
+                                    <POSTGRES_USER>postgres</POSTGRES_USER>
+                                    <POSTGRES_DB>${db.name}</POSTGRES_DB>
+                                </env>
+                                <wait>
+                                    <log>PostgreSQL init process complete</log>
+                                    <time>20000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                            </run>
+                        </image>
+
+                        <image>
+                            <alias>boilerplate-liquibase-container</alias>
+                            <name>rh7-artifactory.svs.hpeswlab.net:8443/caf/boilerplate-db-installer:${project.version}</name>
+                            <run>
+                                <links>
+                                    <link>boilerplate-integrationtests-postgres</link>
+                                </links>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                                <cmd>java -jar /boilerplate-db.jar -fd -db.user postgres -db.pass root -db.name ${db.name} -db.connection jdbc:postgresql://boilerplate-integrationtests-postgres:5432 -log debug
+                                </cmd>
+                                <wait>
+                                    <log>DB update finished.</log>
+                                    <time>90000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

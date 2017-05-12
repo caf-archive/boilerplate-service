@@ -1,0 +1,30 @@
+---
+tag: "CAF_5011/KeyContent_Test.txt"
+testCaseInformation:
+  testCaseId: "CAF_5011"
+  associatedTickets: "CAF-932"
+  description: "KeyContent segregation for emails - primary content only"
+  comments: "CAF_5011/KeyContent_Test.txt"
+inputData:
+  useDataStore: true
+  containerId: "c82335049236404ba86529e9afacba39"
+  inputFile: "CAF_5011/KeyContent_Test.txt"
+  tenantId: "1"
+  expressions:
+    primaryContent: "0"
+  sourceData: {}
+  redactionType: "REPLACE"
+  returnMatches: true
+expectedOutputData:
+  expectedContentFile: null
+  expectedSimilarityPercentage: 0
+  comparisonType: "TEXT"
+  taskResults:
+    CONTENT:
+      data: null
+      matches: null
+      groupedMatches:
+        BOILERPLATE_PRIMARY_CONTENT:
+        - expectedContentFile: "CAF_5011/KeyContent_Test.txt.primary"
+          expectedSimilarityPercentage: 100
+          comparisonType: "BINARY"

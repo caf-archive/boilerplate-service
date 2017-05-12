@@ -1,0 +1,17 @@
+#
+# Copyright 2015-2017 Hewlett Packard Enterprise Development LP.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+java -Dstore.testcase.with.input=false -Dcaf.appname=test/worker-boilerplate -Dconfig.path=test-configs -Dtask.template=email-seg-template.yaml -Dcreate.debug.message=true -Dinput.folder=test-data -Dexpected.folder=test-data -Ddocker.host.address=localhost -Drabbitmq.node.port=5642 -Ddatastore.container.id=3e7a3c99b9a1486d9c20abe236cd1909 -Ddatastore.enabled=true -jar ./worker-tester.jar -w BoilerplateWorker -g

@@ -1,0 +1,43 @@
+{
+  "id": "/${marathon-group}/boilerplate-admin",
+  "cpus": "${boilerplate-admin-cpus}",
+  "mem": "${boilerplate-admin-mem}",
+  "instances": "${boilerplate-admin-instances}",
+  "container": {
+    "docker": {
+      "image": "${docker-registry}/caf/boilerplate-api:${boilerplate-admin-version}",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 0,
+          "protocol": "tcp",
+          "servicePort": "${boilerplate-admin-8080-serviceport}"
+        }
+      ],
+      "privileged": true,
+      "forcePullImage": "${force-pull}"
+    },
+    "type": "DOCKER"
+  },
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "gracePeriodSeconds": "${boilerplate-admin-healthcheck-graceperiodseconds}",
+      "intervalSeconds": "${boilerplate-admin-healthcheck-intervalseconds}",
+      "maxConsecutiveFailures": "${boilerplate-admin-healthcheck-maxconsecutivefailures}",
+      "path": "/boilerplateapi/boilerplate/checkhealth?project_id=1",
+      "timeoutSeconds": "${boilerplate-admin-healthcheck-timeoutseconds}"
+    }
+  ],
+  "env": {
+    "_JAVA_OPTIONS": "-Xms${boilerplate-admin-java-mem-min}m -Xmx${boilerplate-admin-java-mem-max}m",
+    "hibernate.connectionstring": "${boilerplate-admin-hibernate-connectionstring}",
+    "hibernate.user": "${boilerplate-admin-hibernate-user}",
+    "hibernate.password": "${boilerplate-admin-hibernate-password}"
+  },
+  "uris": [
+    "${marathon-uris-root}/${docker-login-config}"
+  ]
+}
+

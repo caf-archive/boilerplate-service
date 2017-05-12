@@ -1,0 +1,34 @@
+---
+tag: "CAF_5013/KeyContent_Test.txt"
+testCaseInformation:
+  testCaseId: "CAF_5013"
+  associatedTickets: "CAF-842"
+  description: "Signature removal from emails"
+  comments: "CAF_5013/KeyContent_Test.txt"
+inputData:
+  useDataStore: true
+  containerId: "c82335049236404ba86529e9afacba39"
+  inputFile: "CAF_5013/KeyContent_Test.txt"
+  tenantId: "1"
+  expressions:
+    sender: "michael.bryson@hpe.com"
+  sourceData: {}
+  redactionType: "REMOVE"
+  returnMatches: true
+expectedOutputData:
+  expectedContentFile: null
+  expectedSimilarityPercentage: 0
+  comparisonType: "TEXT"
+  taskResults:
+    CONTENT:
+      data:
+      - expectedContentFile: "CAF_5013/KeyContent_Test.txt.content"
+        expectedSimilarityPercentage: 100
+        comparisonType: "BINARY"
+      matches: null
+      signatureExtractStatus: "SIGNATURES_EXTRACTED"
+      groupedMatches:
+        BOILERPLATE_EXTRACTED_SIGNATURES:
+        - expectedContentFile: "CAF_5013/KeyContent_Test.txt-signatures/KeyContent_Test.txt.signature1"
+          expectedSimilarityPercentage: 100
+          comparisonType: "BINARY"
