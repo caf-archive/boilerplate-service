@@ -40,4 +40,4 @@ This contains implementations of the testing framework to allow for integration 
 This project builds a Docker image for the Boilerplate API web service. It consists of a Tomcat web server that connects to a database for performing Boilerplate Expressions and Tags CRUD operations. Auditing of Boilerplate API operations can be configured and enabled by following [boilerplate-api-auditing](boilerplate-api-container/documentation/boilerplate-api-auditing.md). This project can be found in [boilerplate-api-container](boilerplate-api-container).
 
 ## Feature Testing
-The testing for the Boilerplate Service is defined in [testcases](testcases).
+The testing for the Boilerplate Service is defined in [testcases](worker-boilerplate-container-fs/testcases).
