@@ -22,7 +22,7 @@ Manifest of the components which make up the Boilerplate Service:
 
 The Boilerplate Worker is used to identify and remove boilerplate language.
 
-For more information on the functioning of the Boilerplate Worker visit [Boilerplate Removal Worker](worker-boilerplate/documentation/Boilerplate Removal Worker.md).
+For more information on the functioning of the Boilerplate Worker visit [Boilerplate Removal Worker](worker-boilerplate/documentation/Boilerplate%20Removal%20Worker.md).
 
 ### worker-boilerplate-shared
 This is the shared library defining public classes that constitute the worker interface to be used by consumers of the Boilerplate Worker. The project can be found in [worker-boilerplate-shared](worker-boilerplate-shared).
