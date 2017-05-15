@@ -17,4 +17,4 @@ The username to connect to the Boilerplate database.
 The password to use to connect to the Boilerplate database.
 
 ## Feature Testing
-The testing for the Boilerplate API is defined [here](../testcases)
+The testing for the Boilerplate API is defined [here](../worker-boilerplate-container-fs/testcases)
