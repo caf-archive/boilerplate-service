@@ -3,9 +3,6 @@
 
 ## Properties List
 ### Common CAF Properties
-#### docker-registry
-- The docker repository that images will be pulled from. The template json files use this to build up the image name they tell Marathon to pull down. The  image name will start with this property value and then a name specific to the application in the json file and a version tag, an example of this is shown in the excerpt from 'marathon-workflow-policy-worker.json' below;<pre><code>"image": "${docker-registry}/policy/worker:${workflow-worker-version}",</code></pre>
-
 #### marathon-group
 - This name will be used to group together applications in Marathon, enabling the ability to make applications dependant on others. Changing this between runs of Marathon Loader would allow you to launch separate sets of the applications alongside each other that would be independent.
 
@@ -29,7 +26,7 @@
 - Configures the number of instances of the boilerplate API container to start on launch.
 
 #### boilerplate-admin-version
-- This property specifies the version number of the Boilerplate API to pull down from Artifactory.
+- This property specifies the version number of the Boilerplate API to pull down from Docker Hub.
 
 #### boilerplate-admin-8080-serviceport
 - This property specifies the external port number on the host machine that will be forwarded to the containers internal 8080 port. This port is used to call the boilerplate API web service.

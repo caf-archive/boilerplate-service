@@ -33,7 +33,7 @@
 
     <properties>
         <caf.worker-store.impl>worker-store-fs</caf.worker-store.impl>
-        <worker-boilerplate.container.name>rh7-artifactory.svs.hpeswlab.net:8443/caf/worker-boilerplate-fs:${project.version}</worker-boilerplate.container.name>
+        <worker-boilerplate.container.name>cafinternal/worker-boilerplate:${project.version}</worker-boilerplate.container.name>
         <worker-boilerplate.container.alias>boilerplate-worker-fs</worker-boilerplate.container.alias>
         <caf.config.impl>config-file</caf.config.impl>
         <caf.codec.impl>codec-json</caf.codec.impl>
@@ -509,7 +509,7 @@
                         <!-- Begin Boilerplate API image -->
                         <image>
                             <alias>boilerplate-api</alias>
-                            <name>rh7-artifactory.svs.hpeswlab.net:8443/caf/boilerplate-api:${project.version}</name>
+                            <name>cafinternal/boilerplate-api:${project.version}</name>
                             <run>
                                 <ports>
                                     <port>${boilerplate.adminport}:8080</port>

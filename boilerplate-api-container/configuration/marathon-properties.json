@@ -1,5 +1,4 @@
 {
-  "docker-registry": "rh7-artifactory.svs.hpeswlab.net:8443",
   "marathon-group": "demo",
   "force-pull": false,
   "marathon-uris-root": "/vagrant",
@@ -8,7 +7,7 @@
   "boilerplate-admin-cpus": "0.5",
   "boilerplate-admin-mem": "512",
   "boilerplate-admin-instances": "1",
-  "boilerplate-admin-version": "1.12.0",
+  "boilerplate-admin-version": "1.14.1-68",
   "boilerplate-admin-8080-serviceport": "23334",
   "boilerplate-admin-healthcheck-graceperiodseconds": "300",
   "boilerplate-admin-healthcheck-intervalseconds": "120",
