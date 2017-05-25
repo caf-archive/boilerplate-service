@@ -487,7 +487,7 @@
                         <!-- Begin Boilerplate db install image -->
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
-                            <name>rh7-artifactory.svs.hpeswlab.net:8443/caf/boilerplate-db-installer:${project.version}</name>
+                            <name>cafinternal/prereleases:boilerplate-db-installer-${project.version}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
