@@ -391,6 +391,7 @@
                                             http://${docker.host.address}:${boilerplate.adminport}/boilerplateapi/boilerplate/checkhealth?project_id=1
                                         </url>
                                     </http>
+                                    <time>15000</time>
                                 </wait>
                             </run>
                         </image>
