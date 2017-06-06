@@ -294,7 +294,7 @@
                 <version>${fabric8.docker.maven.version}</version>
                 <configuration>
                     <verbose>true</verbose>
-                    <autoPull>always</autoPull>
+                    <!--<autoPull></autoPull>-->
                     <logDate>default</logDate>
 
                     <images>
@@ -324,7 +324,7 @@
 
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
-                            <name>cafinternal/prereleases:boilerplate-db-installer-${project.version}</name>
+                            <name>cafinternal/boilerplate-db-installer:${project.version}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
