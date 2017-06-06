@@ -201,6 +201,7 @@
                         <boilerplate.adminport>${boilerplate.adminport}</boilerplate.adminport>
                         <docker.host.address>${docker.host.address}</docker.host.address>
                         <postgres.db.port>${postgres.db.port}</postgres.db.port>
+                        <timeout.ms>60000</timeout.ms>
                     </systemPropertyVariables>
                     <environmentVariables>
                         <hibernate.connectionstring>
