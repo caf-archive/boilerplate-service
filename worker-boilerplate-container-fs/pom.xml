@@ -33,7 +33,7 @@
 
     <properties>
         <caf.worker-store.impl>worker-store-fs</caf.worker-store.impl>
-        <worker-boilerplate.container.name>cafinternal/worker-boilerplate:${project.version}</worker-boilerplate.container.name>
+        <worker-boilerplate.container.name>cafinternal/prereleases:worker-boilerplate-${project.version}</worker-boilerplate.container.name>
         <worker-boilerplate.container.alias>boilerplate-worker-fs</worker-boilerplate.container.alias>
         <caf.config.impl>config-file</caf.config.impl>
         <caf.codec.impl>codec-json</caf.codec.impl>
@@ -487,7 +487,7 @@
                         <!-- Begin Boilerplate db install image -->
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
-                            <name>cafinternal/boilerplate-db-installer:${project.version}</name>
+                            <name>cafinternal/prereleases:boilerplate-db-installer-${project.version}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
@@ -509,7 +509,7 @@
                         <!-- Begin Boilerplate API image -->
                         <image>
                             <alias>boilerplate-api</alias>
-                            <name>cafinternal/boilerplate-api:${project.version}</name>
+                            <name>cafinternal/prereleases:boilerplate-api-${project.version}</name>
                             <run>
                                 <ports>
                                     <port>${boilerplate.adminport}:8080</port>
@@ -566,7 +566,7 @@
                         <!-- Begin Boilerplate Creation image -->
                         <image>
                             <alias>boilerplate-creation-container</alias>
-                            <name>cafinternal/boilerplate-creator:${project.version}</name>
+                            <name>cafinternal/prereleases:boilerplate-creator-${project.version}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-api</link>

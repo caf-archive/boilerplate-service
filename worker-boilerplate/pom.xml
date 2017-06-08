@@ -324,7 +324,7 @@
 
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
-                            <name>cafinternal/boilerplate-db-installer:${project.version}</name>
+                            <name>cafinternal/prereleases:boilerplate-db-installer-${project.version}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
@@ -345,7 +345,7 @@
                         </image>
                         <image>
                             <alias>boilerplate-api-container</alias>
-                            <name>cafinternal/boilerplate-api:${project.version}</name>
+                            <name>cafinternal/prereleases:boilerplate-api-${project.version}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
