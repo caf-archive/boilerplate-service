@@ -294,7 +294,7 @@
                 <version>${fabric8.docker.maven.version}</version>
                 <configuration>
                     <verbose>true</verbose>
-                    <!--<autoPull></autoPull>-->
+                    <autoPull>always</autoPull>
                     <logDate>default</logDate>
 
                     <images>
