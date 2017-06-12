@@ -285,7 +285,7 @@
 
                         <image>
                             <alias>boilerplate-api-container</alias>
-                            <name>cafinternal/boilerplate-api:${project.version}</name>
+                            <name>cafinternal/prereleases:boilerplate-api-${project.version}</name>
                             <build>
                                 <from>java:8</from>
                                 <maintainer>dominic.joh.gibson@hpe.com</maintainer>

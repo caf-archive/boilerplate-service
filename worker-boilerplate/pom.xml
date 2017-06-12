@@ -345,7 +345,7 @@
                         </image>
                         <image>
                             <alias>boilerplate-api-container</alias>
-                            <name>cafinternal/boilerplate-api:${project.version}</name>
+                            <name>cafinternal/prereleases:boilerplate-api-${project.version}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
