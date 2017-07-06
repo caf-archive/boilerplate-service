@@ -42,7 +42,7 @@ public class BoilerplateCreator {
         System.out.println("");
     }
 
-    private CreationResult createExpressionsAndTags(String projectId, Collection<CreationExpression> expressions,
+    public CreationResult createExpressionsAndTags(String projectId, Collection<CreationExpression> expressions,
                         Collection<Tag> tags){
         ApiClient apiClient = new ApiClient();
         apiClient.setApiKey(projectId);
