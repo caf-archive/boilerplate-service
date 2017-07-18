@@ -29,7 +29,7 @@
 
     <groupId>com.github.cafdataprocessing</groupId>
     <artifactId>boilerplate-service-aggregator</artifactId>
-    <version>2.2.0-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     
     
@@ -108,7 +108,8 @@
     </developers>
 
     <properties>
-        <caf.worker-framework.version>1.9.0-260</caf.worker-framework.version>
+        <caf.worker-framework.version>1.6.0-181</caf.worker-framework.version>
+        <caf.worker-document-framework.version>3.0.0-SNAPSHOT</caf.worker-document-framework.version>
     </properties>
 
     <dependencyManagement>
@@ -117,6 +118,13 @@
                 <groupId>com.github.workerframework</groupId>
                 <artifactId>worker-framework</artifactId>
                 <version>${caf.worker-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafdataprocessing</groupId>
+                <artifactId>worker-document-framework</artifactId>
+                <version>${caf.worker-document-framework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -136,9 +144,6 @@
         <module>boilerplate-creation-container</module>
         <module>util-boilerplate-creation</module>
         <module>worker-boilerplate</module>
-        <module>worker-boilerplate-shared</module>
-        <module>worker-boilerplate-container-fs</module>
-        <module>worker-boilerplate-testing</module>
     </modules>
     
     <scm>

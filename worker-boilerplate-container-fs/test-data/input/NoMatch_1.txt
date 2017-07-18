@@ -1,3 +1,0 @@
-This is a test file. It contains some text that will be matched by a boilerplate expression and then removed.
-This file may contain confidential and/or legally privileged material for the sole use of the intended recipient. If you are not the intended recipient (or authorized to receive for the recipient) please contact the sender by reply e-mail and delete all copies of this message. If you are receiving this message internally within the Hewlett Packard group of companies, you should consider the contents “CONFIDENTIAL”.
-The previous text was the information to be redacted.

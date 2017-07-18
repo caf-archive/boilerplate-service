@@ -1,3 +1,0 @@
-Testing document content for boilerplate expression so it can pick up and redact text. The text will be HP Ltd and should be removed HP Ltd again so I can see if it matches multiple occurrences.
-
-The new company will be known as Hewlett Packard Enterprise with the shortened name HPE.

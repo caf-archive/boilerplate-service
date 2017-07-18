@@ -1,6 +1,0 @@
-# The following files must always have CRLF line endings on checkout.
-testcases/automated/CAF_5002/Generic_disclaimer.txt.content text eol=crlf
-testcases/automated/CAF_5002/HP_HPE.txt.content text eol=crlf
-testcases/automated/CAF_5003/Generic_disclaimer.txt.content text eol=crlf
-testcases/automated/CAF_5003/HP_HPE.txt.content text eol=crlf
-testcases/automated/CAF_5003/HP_HPE2.txt.content text eol=crlf
