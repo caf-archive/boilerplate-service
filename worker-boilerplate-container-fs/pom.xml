@@ -595,7 +595,7 @@
                             <alias>boilerplate-worker</alias>
                             <name>${worker-boilerplate.container.name}</name>
                             <build>
-                                <from>rh7-artifactory.svs.hpeswlab.net:8443/caf/jep_talon-image:2.0.0-5</from>
+                                <from>cafinternal/prereleases:jep-talon-2.2.0-SNAPSHOT</from>
                                 <maintainer>michael.mcalynn@hpe.com</maintainer>
                                 <ports>
                                     <port>8080</port>
