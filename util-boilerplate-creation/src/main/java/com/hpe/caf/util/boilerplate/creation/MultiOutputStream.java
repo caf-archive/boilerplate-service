@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * An OutputStream that allows writing to multiple configured output streams in a single call.
  */
 public class MultiOutputStream extends OutputStream
 {

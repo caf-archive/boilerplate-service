@@ -20,7 +20,7 @@ import com.hpe.caf.boilerplate.webcaller.model.Tag;
 import java.util.Collection;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Represents the input paramters to use in expression and tag creation.
  */
 public class CreationInput {
     private String projectId;

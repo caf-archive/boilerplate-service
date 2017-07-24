@@ -16,7 +16,7 @@
 package com.hpe.caf.util.boilerplate.creation;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Constant values for use with creation utility.
  */
 public class Constants {
     public static final String ERROR_LOG = "_Errors.log";

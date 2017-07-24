@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Entrypoint for application to create boilerplate expressions and tags based on file input.
  */
 public class Main {
     public static void main(final String[] args) throws Exception {

@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Writes the result of creating expressions and tags to a file.
  */
 public class CreationResultWriter {
     public static void outputResult(CreationResult result){

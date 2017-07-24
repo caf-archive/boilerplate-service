@@ -15,11 +15,11 @@
  */
 package com.hpe.caf.util.boilerplate.creation;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hpe.caf.boilerplate.webcaller.model.BoilerplateExpression;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Representation of a boilerplate expression to be created using creation utility. Provides ability to record temporary ID
+ * for usage before ID is assigned to expression after creation.
  */
 public class CreationExpression extends BoilerplateExpression{
     /*

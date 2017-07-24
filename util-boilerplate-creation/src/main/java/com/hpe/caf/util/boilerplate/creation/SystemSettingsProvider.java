@@ -22,7 +22,7 @@ import org.apache.commons.configuration.SystemConfiguration;
 import java.util.Objects;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Allows access to environment settings.
  */
 public class SystemSettingsProvider extends SettingsProvider {
 

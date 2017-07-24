@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Holds the result of creating the set of expressions and tags.
  */
 public class CreationResult {
     private String projectId;

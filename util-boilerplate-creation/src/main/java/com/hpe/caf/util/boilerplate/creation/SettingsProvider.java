@@ -16,7 +16,7 @@
 package com.hpe.caf.util.boilerplate.creation;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Provides access to defined application settings from the environment.
  */
 public abstract class SettingsProvider {
 

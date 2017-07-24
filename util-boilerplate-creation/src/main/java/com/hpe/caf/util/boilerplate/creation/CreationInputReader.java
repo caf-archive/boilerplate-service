@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Retrieves expressions and tags to create information from file.
  */
 public class CreationInputReader {
     public static CreationInput getInput(){
