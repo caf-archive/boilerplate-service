@@ -8,6 +8,8 @@ This utility allows for the bulk creation of boilerplate expressions and tags.
 2) Sends these to boilerplate-web-api (specified via environment variable) create method url.
 3) Outputs id's and names of created expressions and tags.
 
+By default if expressions/tags exist with the same name as those passed in to create then the existing expressions/tags will be deleted before the current set are created.
+
 ## Usage
 
 ### Prerequisites
