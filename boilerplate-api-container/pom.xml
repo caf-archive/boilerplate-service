@@ -235,7 +235,7 @@
                 </executions>
                 <configuration>
                     <verbose>true</verbose>
-                    <autoPull>on</autoPull>
+                    <autoPull>true</autoPull>
                     <logDate>default</logDate>
 
                     <images>

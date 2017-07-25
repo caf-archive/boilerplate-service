@@ -381,7 +381,7 @@
                 </executions>
                 <configuration>
                     <verbose>true</verbose>
-                    <autoPull>always</autoPull>
+                    <autoPull>true</autoPull>
                     <logDate>default</logDate>
                     <images>
                         <image>
