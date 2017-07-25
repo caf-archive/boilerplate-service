@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.github.cafapi</groupId>
         <artifactId>caf-common</artifactId>
-        <version>1.10.0-205</version>
+        <version>1.12.0-232</version>
     </parent>
 
     <groupId>com.github.cafdataprocessing</groupId>
@@ -109,6 +109,13 @@
 
     <properties>
         <caf.worker-framework.version>1.9.0-260</caf.worker-framework.version>
+        <cafBoilerplateApiContainerName>${dockerDataProcessingOrg}boilerplate-api${dockerProjectVersion}</cafBoilerplateApiContainerName>
+        <cafBoilerplateCreationContainerName>${dockerDataProcessingOrg}boilerplate-creator${dockerProjectVersion}</cafBoilerplateCreationContainerName>
+        <cafBoilerplateDbInstallerContainerName>${dockerDataProcessingOrg}boilerplate-db-installer${dockerProjectVersion}</cafBoilerplateDbInstallerContainerName>
+        <cafBoilplateWorkerContainerName>${dockerDataProcessingOrg}worker-boilerplate${dockerProjectVersion}</cafBoilplateWorkerContainerName>
+        <dockerHubOrganization>cafdataprocessing</dockerHubOrganization>
+        <dockerDataProcessingOrg>${dockerImagePrefix}${dockerHubOrganization}${dockerOrgSeperator}</dockerDataProcessingOrg>
+        <dockerProjectVersion>${dockerVersionSeperator}${project.version}</dockerProjectVersion>
     </properties>
 
     <dependencyManagement>
@@ -133,8 +140,8 @@
         <module>boilerplate-api-contract</module>
         <module>boilerplate-api-html</module>
         <module>boilerplate-api-ui</module>
-        <module>boilerplate-creation-container</module>
         <module>util-boilerplate-creation</module>
+        <module>boilerplate-creation-container</module>
         <module>worker-boilerplate</module>
         <module>worker-boilerplate-shared</module>
         <module>worker-boilerplate-container-fs</module>

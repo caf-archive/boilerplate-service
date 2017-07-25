@@ -33,7 +33,6 @@
 
     <properties>
         <caf.worker-store.impl>worker-store-fs</caf.worker-store.impl>
-        <worker-boilerplate.container.name>cafinternal/prereleases:worker-boilerplate-${project.version}</worker-boilerplate.container.name>
         <worker-boilerplate.container.alias>boilerplate-worker-fs</worker-boilerplate.container.alias>
         <caf.config.impl>config-file</caf.config.impl>
         <caf.codec.impl>codec-json</caf.codec.impl>
@@ -487,7 +486,7 @@
                         <!-- Begin Boilerplate db install image -->
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
-                            <name>cafinternal/prereleases:boilerplate-db-installer-${project.version}</name>
+                            <name>${cafBoilerplateDbInstallerContainerName}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
@@ -509,7 +508,7 @@
                         <!-- Begin Boilerplate API image -->
                         <image>
                             <alias>boilerplate-api</alias>
-                            <name>cafinternal/prereleases:boilerplate-api-${project.version}</name>
+                            <name>${cafBoilerplateApiContainerName}</name>
                             <run>
                                 <ports>
                                     <port>${boilerplate.adminport}:8080</port>
@@ -566,7 +565,7 @@
                         <!-- Begin Boilerplate Creation image -->
                         <image>
                             <alias>boilerplate-creation-container</alias>
-                            <name>cafinternal/prereleases:boilerplate-creator-${project.version}</name>
+                            <name>${cafBoilerplateCreationContainerName}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-api</link>
@@ -593,10 +592,9 @@
                         <!-- Begin Boilerplate Worker image -->
                         <image>
                             <alias>boilerplate-worker</alias>
-                            <name>${worker-boilerplate.container.name}</name>
+                            <name>${cafBoilplateWorkerContainerName}</name>
                             <build>
-                                <from>cafinternal/prereleases:jep-talon-2.2.0-SNAPSHOT</from>
-                                <maintainer>michael.mcalynn@hpe.com</maintainer>
+                                <from>cafdataprocessing/jep-talon:2.2</from>
                                 <ports>
                                     <port>8080</port>
                                     <port>8081</port>

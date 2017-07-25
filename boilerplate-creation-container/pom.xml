@@ -78,7 +78,7 @@
                         <!-- Begin Boilerplate Creation image -->
                         <image>
                             <alias>boilerplate-creation-container</alias>
-                            <name>cafinternal/prereleases:boilerplate-creator-${project.version}</name>
+                            <name>${cafBoilerplateCreationContainerName}</name>
                             <build>
                                 <from>java:8</from>
                                 <labels>
@@ -111,5 +111,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

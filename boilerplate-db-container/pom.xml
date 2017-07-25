@@ -78,10 +78,9 @@
                     <images>
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
-                            <name>cafinternal/prereleases:boilerplate-db-installer-${project.version}</name>
+                            <name>${cafBoilerplateDbInstallerContainerName}</name>
                             <build>
                                 <from>java:8</from>
-                                <maintainer>dominic.joh.gibson@hpe.com</maintainer>
                                 <labels>
                                     <Build.Number>${project.version}</Build.Number>
                                     <Build.Date>${maven.build.timestamp}</Build.Date>

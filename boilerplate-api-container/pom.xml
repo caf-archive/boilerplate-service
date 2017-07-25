@@ -265,7 +265,7 @@
 
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
-                            <name>cafinternal/prereleases:boilerplate-db-installer-${project.version}</name>
+                            <name>${cafBoilerplateDbInstallerContainerName}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
@@ -285,7 +285,7 @@
 
                         <image>
                             <alias>boilerplate-api-container</alias>
-                            <name>cafinternal/prereleases:boilerplate-api-${project.version}</name>
+                            <name>${cafBoilerplateApiContainerName}</name>
                             <build>
                                 <from>java:8</from>
                                 <maintainer>dominic.joh.gibson@hpe.com</maintainer>
