@@ -36,7 +36,7 @@ public class BoilerplateCreatorIT {
     private static final String cafBoilerplateApiUrl;
 
     static {
-        cafBoilerplateApiUrl = System.getProperty("cafBoilerplateApiUrl", "http://localhost:8080/boilerplateapi");
+        cafBoilerplateApiUrl = System.getProperty(Constants.Properties.BOILERPLATE_URL);
     }
 
     @Test(description = "Checks that expressions and tags are created with expected values.")
@@ -159,15 +159,18 @@ public class BoilerplateCreatorIT {
     }
 
     private void verifyCreatedExpression(CreationExpression expectedExpression, BoilerplateExpression createdExpression){
-        Assert.assertEquals(createdExpression.getDescription(), expectedExpression.getDescription(), "Description of created expression should be as expected.");
-        Assert.assertEquals(createdExpression.getExpression(), expectedExpression.getExpression(), "Expression on created expression should be as expected.");
-        Assert.assertEquals(createdExpression.getReplacementText(), expectedExpression.getReplacementText(), "Replacement text on created expression should be as expected.");
+        Assert.assertEquals(createdExpression.getDescription(), expectedExpression.getDescription(),
+                "Description of created expression should be as expected.");
+        Assert.assertEquals(createdExpression.getExpression(), expectedExpression.getExpression(),
+                "Expression on created expression should be as expected.");
+        Assert.assertEquals(createdExpression.getReplacementText(), expectedExpression.getReplacementText(),
+                "Replacement text on created expression should be as expected.");
     }
 
     private BoilerplateApi getBoilerplateApi(String projectId){
         ApiClient apiClient = new ApiClient();
         apiClient.setApiKey(projectId);
-        apiClient.setBasePath(System.getProperty(Constants.Properties.BOILERPLATE_URL));
+        apiClient.setBasePath(cafBoilerplateApiUrl);
         return new BoilerplateApi(apiClient);
     }
 

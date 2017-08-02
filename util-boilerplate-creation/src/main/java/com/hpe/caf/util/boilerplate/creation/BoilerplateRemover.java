@@ -76,7 +76,8 @@ public class BoilerplateRemover {
             List<Tag> tagsUsingExpression = boilerplateApi.getTagsByExpression(expressionIdToDelete);
             if(!tagsUsingExpression.isEmpty()){
                 LOGGER.warn("An expression with the name: '"+existingExpressionName+ "' is currently being used by the following tags: "+
-                        StringUtils.join(tagsUsingExpression, ", ")+". Due to this the existing expression will not be removed. Expression ID: "
+                        StringUtils.join(tagsUsingExpression, ", ")+
+                        ". Due to this the existing expression will not be removed. Expression ID: "
                         +expressionIdToDelete);
                 continue;
             }
