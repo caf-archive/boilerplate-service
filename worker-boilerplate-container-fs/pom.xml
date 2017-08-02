@@ -241,7 +241,6 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
 
     <build>
@@ -263,7 +262,6 @@
 
                         <!-- boilerplate setup specific properties -->
                         <boilerplate.adminport>${boilerplate.adminport}</boilerplate.adminport>
-                        <docker.host.address>${docker.host.address}</docker.host.address>
                         <postgres.db.port>${postgres.db.port}</postgres.db.port>
                         <timeout.ms>${failsafe.timeout}</timeout.ms>
                     </systemPropertyVariables>

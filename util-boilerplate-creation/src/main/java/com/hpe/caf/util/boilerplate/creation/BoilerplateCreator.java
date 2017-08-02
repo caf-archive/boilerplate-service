@@ -25,29 +25,85 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * Created by Michael.McAlynn on 18/01/2016.
+ * Responsible for creating boilerplate expressions and tags.
  */
 public class BoilerplateCreator {
     public BoilerplateCreator(){}
 
+    /**
+     * Reads expression and tags input file, creates these and outputs the created object IDs to a file.
+     * Any existing expressions/tags under the projectId configured in the file that have matching names to the input data
+     * will be removed before creation.
+     */
     public void run(){
+        run(true);
+    }
+
+    /**
+     * Reads expression and tags input file, creates these and outputs the created object IDs to a file.
+     * Any existing expressions/tags under the projectId configured in the file that have matching names to the input data
+     * will be removed before creation based on the value provided for the {@code overwriteExisting} parameter.
+     * @param overwriteExisting Whether existing expressions/tags should be removed if they match the names of the read in
+     *                          expressions/tags.
+     */
+    public void run(boolean overwriteExisting){
         CreationInput input = CreationInputReader.getInput();
         System.out.println("");
-        CreationResult cResult = createExpressionsAndTags(input.getProjectId(), input.getExpressions(), input.getTags());
+        CreationResult cResult = createExpressionsAndTags(input.getProjectId(),
+                input.getExpressions(),
+                input.getTags(),
+                overwriteExisting);
         System.out.println("");
         //output created tag and expression ids (along with project id)
         CreationResultWriter.outputResult(cResult);
         System.out.println("");
     }
 
+    /**
+     * Creates the provided expressions and tags under the specified projectId. If expressions/tags exist under the projectId
+     * that match the provided names they will be removed before new expressions/tags are created.
+     * @param projectId ProjectId to create with.
+     * @param expressions Boilerplate Expressions to create.
+     * @param tags Tags to create.
+     * @return Represents the result of creating the expressions and tags including assigned IDs.
+     * @throws RuntimeException If an error occurs creating expressions/tags.
+     */
     public CreationResult createExpressionsAndTags(String projectId, Collection<CreationExpression> expressions,
-                        Collection<Tag> tags){
+                                                   Collection<Tag> tags) throws RuntimeException{
+        return createExpressionsAndTags(projectId, expressions, tags, true);
+    }
+
+    /**
+     * Creates the provided expressions and tags under the specified projectId.
+     * @param projectId ProjectId to create with.
+     * @param expressions Boilerplate Expressions to create.
+     * @param tags Tags to create.
+     * @param overwriteExisting Whether existing expressions/tags should be removed if they match the names of the given
+     *                          expressions/tags.
+     * @return Represents the result of creating the expressions and tags including assigned IDs.
+     * @throws RuntimeException If an error occurs creating expressions/tags.
+     *
+     */
+    public CreationResult createExpressionsAndTags(String projectId, Collection<CreationExpression> expressions,
+                        Collection<Tag> tags, boolean overwriteExisting) throws RuntimeException {
         ApiClient apiClient = new ApiClient();
         apiClient.setApiKey(projectId);
         apiClient.setBasePath(System.getProperty(Constants.Properties.BOILERPLATE_URL));
         BoilerplateApi boilerplateApi = new BoilerplateApi(apiClient);
+
+        if(overwriteExisting){
+            try {
+                BoilerplateRemover.removeMatchingExpressionsAndTags(boilerplateApi,
+                        expressions.stream().map(ex -> ex.getName()).collect(Collectors.toList()),
+                        tags.stream().map(ta -> ta.getName()).collect(Collectors.toList()));
+            }
+            catch(ApiException e){
+                throw new RuntimeException(e);
+            }
+        }
 
         Collection<CreationExpression> createdExps = createBoilerplateExpressions(boilerplateApi, expressions, projectId);
         //update tags with the id's of created expressions
@@ -57,6 +113,8 @@ public class BoilerplateCreator {
 
         return new CreationResult(projectId, createdExps, createdTags);
     }
+
+
 
     private void updateTags(Collection<CreationExpression> createdExps, Collection<Tag> tags){
         //keeping a hashmap of already found mappings
