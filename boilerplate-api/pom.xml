@@ -77,7 +77,6 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.1.1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -138,13 +137,13 @@
         </profile>
 
         <profile>
-                <id>nightly-test</id>
-                <activation>
-                    <property>
-                        <name>RE_BUILD_TYPE</name>
-                        <value>release</value>
+            <id>nightly-test</id>
+            <activation>
+                <property>
+                    <name>RE_BUILD_TYPE</name>
+                    <value>release</value>
                 </property>
-                </activation>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -247,7 +246,7 @@
 
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
-                            <name>cafinternal/prereleases:boilerplate-db-installer-${project.version}</name>
+                            <name>${cafBoilerplateDbInstallerContainerName}</name>
                             <run>
                                 <links>
                                     <link>boilerplate-integrationtests-postgres</link>
