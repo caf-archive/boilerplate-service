@@ -379,7 +379,7 @@
                 </executions>
                 <configuration>
                     <verbose>true</verbose>
-                    <autoPull>true</autoPull>
+                    <autoPull>on</autoPull>
                     <logDate>default</logDate>
                     <images>
                         <image>
