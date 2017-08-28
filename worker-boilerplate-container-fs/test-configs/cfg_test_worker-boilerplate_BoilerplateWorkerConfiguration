@@ -1,7 +1,0 @@
-{
-        "workerVersion": "1.12.0",
-        "outputQueue": "test-output-1",
-		"threads": 1,
-		"baseUrl": "http://boilerplate-api:8080/boilerplateapi",
-		"cacheExpireTimePeriod": "PT5M"
-}

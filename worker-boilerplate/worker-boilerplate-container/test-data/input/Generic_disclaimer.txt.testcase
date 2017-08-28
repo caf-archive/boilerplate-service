@@ -1,0 +1,51 @@
+---
+tag: "Generic_disclaimer.txt"
+testCaseInformation:
+  associatedTickets: null
+  comments: "Generic_disclaimer.txt"
+  description: null
+  testCaseId: "Generic_disclaimer.txt"
+inputData:
+  containerId: null
+  inputFile: "Generic_disclaimer.txt"
+  storageReference: null
+  task:
+    customData:
+      expresionIds: "[\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\"]"
+      fields: "[\"CONTENT\"]"
+      outputPartialReference: "TEST_CONTAINER"
+      redactionType: "DO_NOTHING"
+      returnMatches: "true"
+      tagId: null
+      tennatId: "1"
+    fields:
+      CONTENT:
+      - data: "SG91c2UgYnVpbGRpbmcgaW4gTm9ydGhlcm4gSXJlbGFuZCBsYXN0IHllYXIgaGl0IGl0cyBoaWdoZXN0IGxldmVsIHNpbmNlIDIwMDksIGFjY29yZGluZyB0byBpbmR1c3RyeSBmaWd1cmVzLgpOZXcgaG9tZSByZWdpc3RyYXRpb25zIHJvc2UgYnkgMzAlIHRvIDMsMjIzLCB0aGUgTmF0aW9uYWwgSG91c2UgQnVpbGRpbmcgQ291bmNpbCAoTkhCQykgc2FpZC4KVGhhdCBpbmNyZWFzZSBjb21lcyBvZmYgYSB2ZXJ5IGxvdyBiYXNlIC0gdGhlIG51bWJlciBvZiBuZXcgaG91c2VzIGZlbGwgcmFwaWRseSBkdXJpbmcgdGhlIHByb3BlcnR5IGNyYXNoIHJlYWNoaW5nIGEgbG93IHBvaW50IG9mIGZld2VyIHRoYW4gMiwwMDAgaW4gMjAxMi4KSW4gY29tcGFyaXNvbiwgbW9yZSB0aGFuIDcsMDAwIG5ldyBob3VzZSB3ZXJlIGJ1aWx0IGluIDIwMDcuClNlcGFyYXRlbHksIG9mZmljaWFsIGZpZ3VyZXMgc2hvdyB0aGF0IE5vcnRoZXJuIElyZWxhbmQgaGFzIGxvc3QgbW9yZSB0aGFuIG9uZSBpbiBmb3VyIG9mIGl0cyBjb25zdHJ1Y3Rpb24gYnVzaW5lc3NlcyBzaW5jZSAyMDA5LgpUaGUgaW50ZXItZGVwYXJ0bWVudGFsIGJ1c2luZXNzIHJlZ2lzdGVyIHNob3dzIHRoYXQgYmV0d2VlbiAyMDA5IGFuZCAyMDE1IHRoZSBudW1iZXIgb2YgY29uc3RydWN0aW9uIGJ1c2luZXNzZXMgZmVsbCBieSAzLDI5NS4KVGhhdCB3YXMgYSBkZWNsaW5lIG9mIGFsbW9zdCAyNyUuCkluIGNvbXBhcmlzb24sIHRoZSBJVCBzZWN0b3Igc2F3IGEgZ3Jvd3RoIG9mIDIxJSBpbiB0aGF0IHBlcmlvZC4KCkRpc2NsYWltZXIgOiBUaGlzIG1lc3NhZ2UgY29udGFpbnMgY29uZmlkZW50aWFsIGluZm9ybWF0aW9uIGFuZCBpcyBpbnRlbmRlZCBvbmx5IGZvciB0aGUgaW5kaXZpZHVhbCBuYW1lZC4gSWYgeW91IGFyZSBub3QgdGhlIG5hbWVkIGFkZHJlc3NlZSwgeW91IGFyZSBoZXJlYnkgbm90aWZpZWQgdGhhdCBkaXNjbG9zaW5nLCBjb3B5aW5nLCBkaXN0cmlidXRpbmcgb3IgdGFraW5nIGFueSBhY3Rpb24gaW4gcmVsaWFuY2Ugb24gdGhlIGNvbnRlbnRzIG9mIHRoaXMgZS1tYWlsIGlzIHN0cmljdGx5IHByb2hpYml0ZWQuIFBsZWFzZSBub3RpZnkgdGhlIHNlbmRlciBpbW1lZGlhdGVseSBieSBlLW1haWwgaWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBlLW1haWwgYnkgbWlzdGFrZSwgYW5kIGRlbGV0ZSB0aGlzIG1hdGVyaWFsIGZyb20gYW55IGNvbXB1dGVyLiBIZXdsZXR0IFBhY2thcmQgYWNjZXB0cyBubyBsaWFiaWxpdHkgZm9yIGVycm9ycyBvciBvbWlzc2lvbnMgaW4gdGhlIGNvbnRlbnRzIG9mIHRoaXMgbWVzc2FnZSwgd2hpY2ggYXJpc2UgYXMgYSByZXN1bHQgb2YgZS1tYWlsIHRyYW5zbWlzc2lvbi4="
+        encoding: "base64"
+  useDataStore: false
+expectedOutputData:
+  result:
+    fieldChanges:
+      BOILERPLATE_MATCH_2_VALUE:
+        action: "add"
+        values:
+        - data: "Disclaimer : This message contains confidential information and is\
+            \ intended only for the individual named. If you are not the named addressee,\
+            \ you are hereby notified that disclosing, copying, distributing or taking\
+            \ any action in reliance on the contents of this e-mail is strictly prohibited.\
+            \ Please notify the sender immediately by e-mail if you have received\
+            \ this e-mail by mistake, and delete this material from any computer.\
+            \ Hewlett Packard accepts no liability for errors or omissions in the\
+            \ contents of this message, which arise as a result of e-mail transmission."
+      BOILERPLATE_MATCH_6_VALUE:
+        action: "add"
+        values:
+        - data: "Hewlett Packard"
+      BOILERPLATE_MATCH_ID:
+        action: "add"
+        values:
+        - data: "2"
+        - data: "6"
+      POLICY_BOILERPLATE_EMAIL_SIGNATURES_FIELDNAME:
+        action: "replace"
+        values: []
