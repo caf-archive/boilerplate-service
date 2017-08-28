@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 public class WorkerBoilerplateFactory implements DocumentWorkerFactory
 {
     @Override
-    public DocumentWorker createDocumentWorker(Application application)
+    public DocumentWorker createDocumentWorker(final Application application)
     {
         try {
             return new WorkerBoilerplate(application);

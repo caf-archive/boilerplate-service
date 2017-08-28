@@ -25,7 +25,6 @@ import com.github.cafdataprocessing.boilerplate.result.BoilerplateWorkerResponse
 import com.github.cafdataprocessing.boilerplate.result.ResultTranslator;
 import com.github.cafdataprocessing.boilerplate.source.RuntimeInvalidTaskException;
 import com.github.cafdataprocessing.boilerplate.source.RuntimeTaskRejectedException;
-import com.github.cafdataprocessing.boilerplate.utils.CreateCaches;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Multimap;
 import com.hpe.caf.api.Codec;
