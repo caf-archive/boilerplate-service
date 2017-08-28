@@ -108,7 +108,7 @@
     </developers>
 
     <properties>
-        <caf.worker-framework.version>1.9.0-260</caf.worker-framework.version>
+        <caf.worker-framework.version>2.3.1-301</caf.worker-framework.version>
         <cafBoilerplateApiContainerName>${dockerDataProcessingOrg}boilerplate-api${dockerProjectVersion}</cafBoilerplateApiContainerName>
         <cafBoilerplateCreationContainerName>${dockerDataProcessingOrg}boilerplate-creator${dockerProjectVersion}</cafBoilerplateCreationContainerName>
         <cafBoilerplateDbInstallerContainerName>${dockerDataProcessingOrg}boilerplate-db-installer${dockerProjectVersion}</cafBoilerplateDbInstallerContainerName>
