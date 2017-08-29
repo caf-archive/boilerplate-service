@@ -259,6 +259,9 @@
                         <goals>
                             <goal>push</goal>
                         </goals>
+                        <configuration>
+                            <filter>${worker-boilerplate.container.name}</filter>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
