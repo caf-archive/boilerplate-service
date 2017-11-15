@@ -43,12 +43,6 @@
             <type>war</type>
         </dependency>
         <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat</artifactId>
-            <version>8.0.15</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
