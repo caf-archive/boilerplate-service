@@ -43,18 +43,6 @@
             <type>war</type>
         </dependency>
         <dependency>
-            <groupId>com.github.krallin</groupId>
-            <artifactId>tini</artifactId>
-            <scope>runtime</scope>
-            <type>exe</type>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat</artifactId>
-            <version>8.0.15</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
@@ -287,83 +275,38 @@
                             <alias>boilerplate-api-container</alias>
                             <name>${cafBoilerplateApiContainerName}</name>
                             <build>
-                                <from>java:8</from>
+                                <from>cafapi/opensuse-tomcat:2.0</from>
                                 <maintainer>dominic.joh.gibson@hpe.com</maintainer>
-                                <ports>
-                                    <port>8080</port>
-                                </ports>
-                                <env>
-                                    <CATALINA_HOME>/opt/tomcat</CATALINA_HOME>
-                                    <PATH>$PATH:$CATALINA_HOME/bin</PATH>
-                                </env>
                                 <labels>
                                     <Build.Number>${project.version}</Build.Number>
                                     <Build.Date>${maven.build.timestamp}</Build.Date>
                                     <Git.Branch>${git.branch}</Git.Branch>
                                     <Git.Commit>${git.revision}</Git.Commit>
                                 </labels>
-                                <entryPoint>
-                                    <exec>
-                                        <args>/maven/tini-${tini.version}.exe</args>
-                                        <args>-v</args>
-                                        <args>--</args>
-                                    </exec>
-                                </entryPoint>
-                                <runCmds>
-                                    <runCmd>mv /opt/apache-tomcat-* /opt/tomcat</runCmd>
-                                    <runCmd>mv /opt/*.war /opt/tomcat/webapps</runCmd>
-                                </runCmds>
-                                <cmd>/start.sh</cmd>
+                                <healthCheck>
+                                    <mode>none</mode>
+                                </healthCheck>
                                 <assembly>
-                                    <basedir>/</basedir>
+                                    <basedir>/usr/share/tomcat</basedir>
                                     <mode>tar</mode>
                                     <inline>
-                                        <fileSets>
-                                            <fileSet>
-                                                <lineEnding>unix</lineEnding>
-                                                <includes>
-                                                    <include>*.sh</include>
-                                                </includes>
-                                                <fileMode>0755</fileMode>
-                                            </fileSet>
-                                        </fileSets>
                                         <dependencySets>
-                                            <dependencySet>
-                                                <useProjectArtifact>false</useProjectArtifact>
-                                                <fileMode>0755</fileMode>
-                                                <unpack>true</unpack>
-                                                <outputDirectory>/opt</outputDirectory>
-                                                <includes>
-                                                    <include>org.apache.tomcat:tomcat</include>
-                                                </includes>
-                                                <!--<outputFileNameMapping>tomcat</outputFileNameMapping>-->
-                                            </dependencySet>
                                             <!-- Boilerplate swagger UI -->
                                             <dependencySet>
-                                                <useProjectArtifact>true</useProjectArtifact>
+                                                <outputDirectory>webapps/boilerplate-api-ui</outputDirectory>
                                                 <includes>
-                                                    <include>com.github.cafdataprocessing:boilerplate-api-ui
-                                                    </include>
+                                                    <include>com.github.cafdataprocessing:boilerplate-api-ui</include>
                                                 </includes>
-                                                <outputDirectory>/opt</outputDirectory>
-                                                <outputFileNameMapping>boilerplate-api-ui.war</outputFileNameMapping>
-                                            </dependencySet>
-                                            <dependencySet>
-                                                <useProjectArtifact>true</useProjectArtifact>
-                                                <includes>
-                                                    <include>com.github.cafdataprocessing:boilerplate-api-web
-                                                    </include>
-                                                </includes>
-                                                <outputDirectory>/opt</outputDirectory>
-                                                <outputFileNameMapping>boilerplateapi.war</outputFileNameMapping>
-                                            </dependencySet>
-                                            <dependencySet>
+                                                <unpack>true</unpack>
                                                 <useProjectArtifact>false</useProjectArtifact>
-                                                <fileMode>0755</fileMode>
+                                            </dependencySet>
+                                            <dependencySet>
+                                                <outputDirectory>webapps/boilerplateapi</outputDirectory>
                                                 <includes>
-                                                    <include>com.github.krallin:tini</include>
+                                                    <include>com.github.cafdataprocessing:boilerplate-api-web</include>
                                                 </includes>
-                                                <outputDirectory>/maven</outputDirectory>
+                                                <unpack>true</unpack>
+                                                <useProjectArtifact>false</useProjectArtifact>
                                             </dependencySet>
                                         </dependencySets>
                                     </inline>
