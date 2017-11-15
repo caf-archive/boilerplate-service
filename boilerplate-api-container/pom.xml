@@ -307,7 +307,7 @@
                                                 <useProjectArtifact>false</useProjectArtifact>
                                             </dependencySet>
                                             <dependencySet>
-                                                <outputDirectory>webapps/boilerplate-api-web</outputDirectory>
+                                                <outputDirectory>webapps/boilerplateapi</outputDirectory>
                                                 <includes>
                                                     <include>com.github.cafdataprocessing:boilerplate-api-web</include>
                                                 </includes>
