@@ -97,12 +97,6 @@
             <groupId>com.github.cafapi.codec</groupId>
             <artifactId>${caf.codec.impl}</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.krallin</groupId>
-            <artifactId>tini</artifactId>
-            <scope>runtime</scope>
-            <type>exe</type>
-        </dependency>
         
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
@@ -121,12 +115,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.cafapi</groupId>
-            <artifactId>container-cert-script</artifactId>
-            <type>tar.gz</type>
         </dependency>
 
         <!-- Integration test dependencies -->
@@ -592,7 +580,7 @@
                             <alias>boilerplate-worker</alias>
                             <name>${cafBoilplateWorkerContainerName}</name>
                             <build>
-                                <from>cafdataprocessing/jep-talon:2.2</from>
+                                <from>cafinternal/prereleases:opensuse-jeptalon-1.0.0-SNAPSHOT</from>
                                 <ports>
                                     <port>8080</port>
                                     <port>8081</port>
@@ -648,8 +636,6 @@
                                                 <useProjectArtifact>false</useProjectArtifact>
                                                 <scope>runtime</scope>
                                                 <excludes>
-                                                    <exclude>com.github.krallin:tini</exclude>
-                                                    <exclude>com.github.cafapi:container-cert-script</exclude>
                                                     <exclude>com.github.cafdataprocessing:util-email-content-segregation-script</exclude>
                                                 </excludes>
                                             </dependencySet>
@@ -658,15 +644,7 @@
                                                 <useTransitiveFiltering>true</useTransitiveFiltering>
                                                 <unpack>true</unpack>
                                                 <includes>
-                                                    <include>com.github.cafapi:container-cert-script</include>
                                                     <include>com.github.cafdataprocessing:util-email-content-segregation-script</include>
-                                                </includes>
-                                            </dependencySet>
-                                            <dependencySet>
-                                                <useProjectArtifact>false</useProjectArtifact>
-                                                <fileMode>0755</fileMode>
-                                                <includes>
-                                                    <include>com.github.krallin:tini</include>
                                                 </includes>
                                             </dependencySet>
                                         </dependencySets>
