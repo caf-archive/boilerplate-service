@@ -598,13 +598,6 @@
                                     <caf.config.impl>${caf.config.impl}</caf.config.impl>
                                     <caf.codec.impl>${caf.codec.impl}</caf.codec.impl>
                                 </labels>
-                                <entryPoint>
-                                    <exec>
-                                        <args>/maven/tini-${tini.version}.exe</args>
-                                        <args>-v</args>
-                                        <args>--</args>
-                                    </exec>
-                                </entryPoint>
                                 <healthCheck>
                                     <cmd>curl -f http://localhost:8081/healthcheck || exit 1</cmd>
                                 </healthCheck>
