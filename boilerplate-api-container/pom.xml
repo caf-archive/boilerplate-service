@@ -275,7 +275,7 @@
                             <alias>boilerplate-api-container</alias>
                             <name>${cafBoilerplateApiContainerName}</name>
                             <build>
-                                <from>cafapi/opensuse-tomcat:2.0</from>
+                                <from>cafapi/opensuse-tomcat:3</from>
                                 <maintainer>dominic.joh.gibson@hpe.com</maintainer>
                                 <labels>
                                     <Build.Number>${project.version}</Build.Number>
