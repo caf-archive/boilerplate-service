@@ -26,6 +26,7 @@ import com.hpe.caf.worker.boilerplate.DataStoreUtil;
 import com.hpe.caf.worker.boilerplateshared.BoilerplateWorkerConstants;
 import com.hpe.caf.worker.boilerplateshared.response.BoilerplateResult;
 import com.hpe.caf.worker.emailsegregation.ContentSegregation;
+import java.nio.charset.StandardCharsets;
 import jep.JepException;
 
 import java.util.ArrayList;
@@ -74,19 +75,19 @@ public class EmailSegregation {
 
             byte[] contentBytes;
             if (selectedContent != null) {
-                contentBytes = selectedContent.getBytes();
+                contentBytes = selectedContent.getBytes(StandardCharsets.UTF_8);
                 resultMap.put(BoilerplateWorkerConstants.PRIMARY_CONTENT, dataStoreUtil.wrapOrStoreData(contentBytes));
             }
 
             selectedContent = separateKeyContent(separatedEmails, secondaryExpression);
             if (selectedContent != null) {
-                contentBytes = selectedContent.getBytes();
+                contentBytes = selectedContent.getBytes(StandardCharsets.UTF_8);
                 resultMap.put(BoilerplateWorkerConstants.SECONDARY_CONTENT, dataStoreUtil.wrapOrStoreData(contentBytes));
             }
 
             selectedContent = separateKeyContent(separatedEmails, tertiaryExpression);
             if (selectedContent != null) {
-                contentBytes = selectedContent.getBytes();
+                contentBytes = selectedContent.getBytes(StandardCharsets.UTF_8);
                 resultMap.put(BoilerplateWorkerConstants.TERTIARY_CONTENT, dataStoreUtil.wrapOrStoreData(contentBytes));
             }
 
