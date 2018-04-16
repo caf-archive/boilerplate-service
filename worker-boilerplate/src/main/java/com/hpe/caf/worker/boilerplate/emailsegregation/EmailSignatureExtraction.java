@@ -100,7 +100,7 @@ public class EmailSignatureExtraction {
         boilerplateWorkerResponse.setTaskResults(new HashMap<>());
         for (Map.Entry<String, ReferencedData> referencedDataEntry : sourceData.entries()) {
             try {
-                String content = IOUtils.toString(referencedDataEntry.getValue().acquire(dataSource));
+                String content = IOUtils.toString(referencedDataEntry.getValue().acquire(dataSource), StandardCharsets.UTF_8);
                 boilerplateWorkerResponse.getTaskResults().put(referencedDataEntry.getKey(), extractSignatureForField(content, signature, emailSegregation));
             } catch (DataSourceException e) {
                 throw new TaskFailedException("Failed to retrieve content from storage.", e);
