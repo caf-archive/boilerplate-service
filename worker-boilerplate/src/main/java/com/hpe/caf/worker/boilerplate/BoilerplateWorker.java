@@ -40,6 +40,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -163,7 +164,7 @@ public class BoilerplateWorker extends AbstractWorker<BoilerplateWorkerTask, Boi
         boilerplateWorkerResponse.setTaskResults(new HashMap<>());
         for (Map.Entry<String, ReferencedData> referencedDataEntry : sourceData.entries()) {
             try {
-                String content = IOUtils.toString(referencedDataEntry.getValue().acquire(dataSource));
+                String content = IOUtils.toString(referencedDataEntry.getValue().acquire(dataSource), StandardCharsets.UTF_8);
                 boilerplateWorkerResponse.getTaskResults().put(referencedDataEntry.getKey(), emailSegregation.retrieveKeyContent(content, selectedEmail.primaryContent, selectedEmail.secondaryContent, selectedEmail.tertiaryContent));
             } catch (DataSourceException e) {
                 throw new TaskRejectedException("Failed to retrieve content from storage", e);
