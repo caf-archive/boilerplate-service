@@ -652,7 +652,6 @@
                                 <env>
                                     <CAF_APPNAME>test/worker-boilerplate</CAF_APPNAME>
                                     <CAF_CONFIG_PATH>/config</CAF_CONFIG_PATH>
-                                    <LANG>C.UTF-8</LANG>
                                     <!--<_JAVA_OPTIONS>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005</_JAVA_OPTIONS>-->
                                 </env>
                                 <volumes>
