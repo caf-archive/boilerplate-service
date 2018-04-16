@@ -41,6 +41,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +100,7 @@ public class EmailSignatureExtraction {
         boilerplateWorkerResponse.setTaskResults(new HashMap<>());
         for (Map.Entry<String, ReferencedData> referencedDataEntry : sourceData.entries()) {
             try {
-                String content = IOUtils.toString(referencedDataEntry.getValue().acquire(dataSource));
+                String content = IOUtils.toString(referencedDataEntry.getValue().acquire(dataSource), StandardCharsets.UTF_8);
                 boilerplateWorkerResponse.getTaskResults().put(referencedDataEntry.getKey(), extractSignatureForField(content, signature, emailSegregation));
             } catch (DataSourceException e) {
                 throw new TaskFailedException("Failed to retrieve content from storage.", e);
@@ -142,7 +143,7 @@ public class EmailSignatureExtraction {
             }
             //If extracted  a signature then add to result
             if (emailStructure.getSignature() != null) {
-                boilerplateResult.getGroupedMatches().put(BoilerplateWorkerConstants.EXTRACTED_SIGNATURES, ReferencedData.getWrappedData(emailStructure.getSignature().getBytes()));
+                boilerplateResult.getGroupedMatches().put(BoilerplateWorkerConstants.EXTRACTED_SIGNATURES, ReferencedData.getWrappedData(emailStructure.getSignature().getBytes(StandardCharsets.UTF_8)));
             }
             //replace the current message with the email without it's signature.
             separatedEmails.set(currentEmailIndex, emailStructure.getBody());
@@ -205,7 +206,7 @@ public class EmailSignatureExtraction {
         if (boilerplateResult.getData() == null) {
             boilerplateResult.setData(new ArrayList<>());
         }
-        boilerplateResult.getData().add(dataStoreUtil.wrapOrStoreData(concatenatedEmail.getBytes()));
+        boilerplateResult.getData().add(dataStoreUtil.wrapOrStoreData(concatenatedEmail.getBytes(StandardCharsets.UTF_8)));
     }
 
 

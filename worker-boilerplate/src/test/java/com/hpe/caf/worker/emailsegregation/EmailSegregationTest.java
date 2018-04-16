@@ -20,6 +20,7 @@ import com.hpe.caf.util.ref.ReferencedData;
 import com.hpe.caf.worker.boilerplate.emailsegregation.EmailSegregation;
 import com.hpe.caf.worker.boilerplateshared.BoilerplateWorkerConstants;
 import com.hpe.caf.worker.boilerplateshared.response.BoilerplateResult;
+import java.nio.charset.StandardCharsets;
 import jep.Jep;
 import org.junit.Assert;
 import org.junit.Before;
@@ -83,7 +84,7 @@ public class EmailSegregationTest {
         BoilerplateResult boilerplateResult = emailSegregation.retrieveKeyContent(emailChain, primaryExpression, secondaryExpression, tertiaryExpression);
         ReferencedData referencedData = boilerplateResult.getGroupedMatches().get(BoilerplateWorkerConstants.PRIMARY_CONTENT).stream().findFirst().orElse(null);
         Assert.assertNotNull("Should have a primary content field", referencedData);
-        Assert.assertEquals("Primary content should match", firstEmail, new String(referencedData.getData()));
+        Assert.assertEquals("Primary content should match", firstEmail, new String(referencedData.getData(), StandardCharsets.UTF_8));
 
     }
 
