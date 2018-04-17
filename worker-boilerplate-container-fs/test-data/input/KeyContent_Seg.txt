@@ -1,0 +1,36 @@
+From: Bryson, Michael
+Sent: Thu May 19 14:17:55 2016
+To: Ploch, Krzysztof; Comac, Christopher Jam; Crooks, Philip; Getty, Trevor; Hardy, Dermot; Mulholland, Connor; Bryson, Michael; Smith, Conal; O'Loughlin, Aaron; Reid, Andy; McMurray, Pearse P; Gibson, Dominic Joh; Payne, Alastair; Neeson, Gavin Francis; Hunter, Ashley Glenn
+Subject: CAF Release Process
+Importance: High
+Attachments: Artifactory folder organization.docx; Artifactory Private Docker Registries.docx; ArtifactoryPromotion.docx; promotion_flow-example_new.vsdx; CAF Rele_kv0.tmp
+
+Hi All,
+
+As we move closer to GA we need to start utilizing the CAF Release process as detailed in the following diagram:
+
+ 
+
+What this means for us is:
+* We should not have any “release” builds of containers in the docker-dev-local repo only snapshot builds.
+* Once a container is ready for testing it should be promoted to docker-preprod-local where it will be QA tested and then released, so snapshot and release build can reside here.
+* These released containers should then be copied up to docker-stablebuild-local repo from which Aspen should be consuming them.
+
+There is some more information in the documents below but this doesn’t fit completely with us as this is more relevant to Aspen.
+
+
+    
+Comments on this are welcome to see how we can implement this.
+
+Thanks
+
+Michael Bryson
+QA Engineer
+Software Engineering
+Big Data
+
+Belfast, N. Ireland
+michael.bryson@hpe.com <mailto:michael.bryson@hpe.com> 
+
+ <http://www.hpe.com/> 
+

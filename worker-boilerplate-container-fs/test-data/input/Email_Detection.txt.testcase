@@ -1,0 +1,29 @@
+---
+tag: "input/Email_Detection.txt"
+inputData:
+  useDataStore: true
+  containerId: "c82335049236404ba86529e9afacba39"
+  inputFile: "input/Email_Detection.txt"
+  tenantId: "1"
+  expressions:
+    sender: "michael.bryson@hpe.com"
+  sourceData: {}
+  redactionType: "REMOVE"
+  returnMatches: true
+expectedOutputData:
+  expectedContentFile: null
+  expectedSimilarityPercentage: 0
+  comparisonType: "TEXT"
+  taskResults:
+    CONTENT:
+      data:
+      - expectedContentFile: "input/Email_Detection.txt.content"
+        expectedSimilarityPercentage: 100
+        comparisonType: "BINARY"
+      matches: null
+      signatureExtractStatus: "SIGNATURES_EXTRACTED"
+      groupedMatches:
+        BOILERPLATE_EXTRACTED_SIGNATURES:
+        - expectedContentFile: "input/Email_Detection.txt-signatures/Email_Detection.txt.signature1"
+          expectedSimilarityPercentage: 100
+          comparisonType: "BINARY"
