@@ -24,7 +24,6 @@ expectedOutputData:
       signatureExtractStatus: "SIGNATURES_EXTRACTED"
       groupedMatches:
         BOILERPLATE_EXTRACTED_SIGNATURES:
-        - expectedContentFile: "input/Email_Detection.txt-signatures/CAF\
-            \ Release Process.txt.signature1"
+        - expectedContentFile: "input/Email_Detection.txt-signatures/Email_Detection.txt.signature1"
           expectedSimilarityPercentage: 100
           comparisonType: "BINARY"
