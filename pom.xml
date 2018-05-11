@@ -121,7 +121,7 @@
         <dockerHubOrganization>cafdataprocessing</dockerHubOrganization>
         <dockerDataProcessingOrg>${dockerImagePrefix}${dockerHubOrganization}${dockerOrgSeperator}</dockerDataProcessingOrg>
         <dockerProjectVersion>${dockerVersionSeperator}${project.version}</dockerProjectVersion>
-        <git.Repo>${project.scm.url}</git.Repo>
+        <gitRepo>${project.scm.url}</gitRepo>
     </properties>
 
     <dependencyManagement>
