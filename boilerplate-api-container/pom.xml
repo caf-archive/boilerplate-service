@@ -31,7 +31,6 @@
     <artifactId>boilerplate-api-container</artifactId>
 
     <properties>
-        <TOMCAT_VERSION>8.0.26</TOMCAT_VERSION>
         <db.name>boilerplate</db.name>
     </properties>
 
