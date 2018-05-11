@@ -280,7 +280,7 @@
                                 <labels>
                                     <Build.Number>${project.version}</Build.Number>
                                     <Build.Date>${maven.build.timestamp}</Build.Date>
-                                    <Git.Repo>${parent.scm.url}</Git.Repo>
+                                    <Git.Repo>${git.Repo}</Git.Repo>
                                     <Git.Branch>${git.branch}</Git.Branch>
                                     <Git.Commit>${git.revision}</Git.Commit>
                                 </labels>
