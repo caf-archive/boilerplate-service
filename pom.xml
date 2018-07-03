@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2015-2017 EntIT Software LLC, a Micro Focus company.
+    Copyright 2015-2018 Micro Focus or one of its affiliates.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -113,8 +113,8 @@
         <cafBoilerplateCreationContainerName>${dockerDataProcessingOrg}boilerplate-creator${dockerProjectVersion}</cafBoilerplateCreationContainerName>
         <cafBoilerplateDbInstallerContainerName>${dockerDataProcessingOrg}boilerplate-db-installer${dockerProjectVersion}</cafBoilerplateDbInstallerContainerName>
         <cafBoilplateWorkerContainerName>${dockerDataProcessingOrg}worker-boilerplate${dockerProjectVersion}</cafBoilplateWorkerContainerName>
-        <copyrightYear>2017</copyrightYear>
-        <copyrightNotice>Copyright ${project.inceptionYear}-${copyrightYear} ${project.organization.name}.</copyrightNotice>
+        <copyrightYear>2018</copyrightYear>
+        <copyrightNotice>Copyright ${project.inceptionYear}-${copyrightYear} Micro Focus or one of its affiliates.</copyrightNotice>
         <dockerHubOrganization>cafdataprocessing</dockerHubOrganization>
         <dockerDataProcessingOrg>${dockerImagePrefix}${dockerHubOrganization}${dockerOrgSeperator}</dockerDataProcessingOrg>
         <dockerProjectVersion>${dockerVersionSeperator}${project.version}</dockerProjectVersion>
