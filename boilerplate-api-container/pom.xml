@@ -275,7 +275,6 @@
                             <name>${cafBoilerplateApiContainerName}</name>
                             <build>
                                 <from>cafapi/opensuse-tomcat:3</from>
-                                <maintainer>dominic.joh.gibson@hpe.com</maintainer>
                                 <labels>
                                     <Build.Number>${project.version}</Build.Number>
                                     <Build.Date>${maven.build.timestamp}</Build.Date>
