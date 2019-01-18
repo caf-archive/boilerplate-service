@@ -220,12 +220,12 @@
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
-                <version>$[swagger.version}</version>
+                <version>${swagger.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-core</artifactId>
-                <version>$[swagger.version}</version>
+                <version>${swagger.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
