@@ -117,10 +117,12 @@
         <copyrightNotice>Copyright ${project.inceptionYear}-${copyrightYear} Micro Focus or one of its affiliates.</copyrightNotice>
         <dockerHubOrganization>cafdataprocessing</dockerHubOrganization>
         <dockerDataProcessingOrg>${dockerImagePrefix}${dockerHubOrganization}${dockerOrgSeperator}</dockerDataProcessingOrg>
-        <dockerProjectVersion>${dockerVersionSeperator}${project.version}</dockerProjectVersion>
+        <dockerProjectVersion>${dockerVersionSeperator}2.4.0-SCMOD-5064-SNAPSHOT</dockerProjectVersion>
         <gitRepo>https://github.com/CAFDataProcessing/boilerplate-service</gitRepo>
         <enforceCorrectDependencies>true</enforceCorrectDependencies>
+        <hibernate.version>4.3.8.Final</hibernate.version>
         <spring.version>5.0.4.RELEASE</spring.version>
+        <swagger.version>1.5.5</swagger.version>
     </properties>
 
     <dependencyManagement>
@@ -218,12 +220,12 @@
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
-                <version>1.5.5</version>
+                <version>$[swagger.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-core</artifactId>
-                <version>1.5.5</version>
+                <version>$[swagger.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -258,12 +260,12 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-c3p0</artifactId>
-                <version>4.3.8.Final</version>
+                <version>${hibernate.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>4.3.8.Final</version>
+                <version>${hibernate.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.postgresql</groupId>
