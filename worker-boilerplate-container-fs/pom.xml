@@ -33,7 +33,6 @@
 
     <properties>
         <caf.worker-store.impl>worker-store-fs</caf.worker-store.impl>
-        <worker-boilerplate.container.alias>boilerplate-worker-fs</worker-boilerplate.container.alias>
         <caf.config.impl>config-file</caf.config.impl>
         <caf.codec.impl>codec-json</caf.codec.impl>
         <caf.worker-queue.impl>worker-queue-rabbit</caf.worker-queue.impl>
@@ -102,14 +101,12 @@
             <groupId>com.github.cafapi.codec</groupId>
             <artifactId>${caf.codec.impl}</artifactId>
         </dependency>
-        
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>util-email-content-segregation-script</artifactId>
             <type>tar.gz</type>
             <scope>runtime</scope>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
