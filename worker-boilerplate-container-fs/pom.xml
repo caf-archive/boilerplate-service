@@ -65,7 +65,12 @@
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>worker-boilerplate</artifactId>
-            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.github.workerframework</groupId>
@@ -101,7 +106,6 @@
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>util-email-content-segregation-script</artifactId>
-            <version>2.1.0-80</version>
             <type>tar.gz</type>
             <scope>runtime</scope>
         </dependency>
@@ -131,7 +135,6 @@
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>worker-boilerplate-testing</artifactId>
-            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
