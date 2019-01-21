@@ -37,10 +37,8 @@
             <artifactId>boilerplate-db</artifactId>
             <classifier>jar-with-dependencies</classifier>
             <scope>runtime</scope>
-            <type>jar</type>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
