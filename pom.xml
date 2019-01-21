@@ -117,7 +117,7 @@
         <copyrightNotice>Copyright ${project.inceptionYear}-${copyrightYear} Micro Focus or one of its affiliates.</copyrightNotice>
         <dockerHubOrganization>cafdataprocessing</dockerHubOrganization>
         <dockerDataProcessingOrg>${dockerImagePrefix}${dockerHubOrganization}${dockerOrgSeperator}</dockerDataProcessingOrg>
-        <dockerProjectVersion>${dockerVersionSeperator}2.4.0-SCMOD-5064-SNAPSHOT</dockerProjectVersion>
+        <dockerProjectVersion>${dockerVersionSeperator}${project.version}</dockerProjectVersion>
         <gitRepo>https://github.com/CAFDataProcessing/boilerplate-service</gitRepo>
         <enforceCorrectDependencies>true</enforceCorrectDependencies>
         <hibernate.version>4.3.8.Final</hibernate.version>
