@@ -31,8 +31,24 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.cafapi</groupId>
-            <artifactId>caf-api</artifactId>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cafapi.util</groupId>
+            <artifactId>util-ref</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.workerframework</groupId>
+            <artifactId>worker-api</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.workerframework</groupId>
@@ -45,31 +61,10 @@
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>worker-boilerplate-shared</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>worker-boilerplate</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.hpe.caf.boilerplate</groupId>
-            <artifactId>boilerplate-web-caller</artifactId>
-            <version>1.14.1-68</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-annotations</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.ws.rs</groupId>
-                    <artifactId>jsr311-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 

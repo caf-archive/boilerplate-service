@@ -34,20 +34,16 @@
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-core</artifactId>
-            <scope>compile</scope>
-            <version>1.5.5</version>
         </dependency>
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>boilerplate-api-web</artifactId>
-            <version>${project.version}</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>boilerplate-api</artifactId>
-            <version>${project.version}</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>

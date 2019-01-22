@@ -35,13 +35,10 @@
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>boilerplate-db</artifactId>
-            <version>${project.version}</version>
             <classifier>jar-with-dependencies</classifier>
             <scope>runtime</scope>
-            <type>jar</type>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
@@ -82,7 +79,7 @@
                             <build>
                                 <from>cafapi/opensuse-jre8:1</from>
                                 <labels>
-                                    <Build.Number>${project.version}</Build.Number>
+                                    <Build.Number>2.4.0-SNAPSHOT</Build.Number>
                                     <Build.Date>${maven.build.timestamp}</Build.Date>
                                     <Git.Repo>${gitRepo}</Git.Repo>
                                     <Git.Branch>${git.branch}</Git.Branch>

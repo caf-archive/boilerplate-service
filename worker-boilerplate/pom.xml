@@ -67,12 +67,10 @@
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>worker-boilerplate-shared</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hpe.caf.boilerplate</groupId>
             <artifactId>boilerplate-web-caller</artifactId>
-            <version>1.14.1-68</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.fasterxml.jackson.core</groupId>
@@ -91,7 +89,38 @@
         <dependency>
             <groupId>com.github.cafdataprocessing</groupId>
             <artifactId>util-email-content-segregation</artifactId>
-            <version>2.0.0-5</version>
+        </dependency>
+        <dependency>
+            <groupId>mrj0</groupId>
+            <artifactId>jep</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.workerframework</groupId>
+            <artifactId>worker-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -107,11 +136,11 @@
             <groupId>javax.ws.rs</groupId>
             <artifactId>jsr311-api</artifactId>
             <scope>test</scope>
-            <version>1.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax.el</groupId>
@@ -137,10 +166,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.workerframework</groupId>
-            <artifactId>worker-store-fs</artifactId>
         </dependency>
     </dependencies>
 
