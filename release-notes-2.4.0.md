@@ -4,7 +4,8 @@
 ${version-number}
 
 #### New Features
-- [SCMOD-3427](https://jira.autonomy.com/browse/SCMOD-3427): Update Worker Boilerpalte container to latest jeptalon base image
-  Updated Worker Boilerpalte to use the latest opensuse-jeptalon base image.
+- **SCMOD-3427**: Updated Worker Boilerplate container to latest jeptalon base image
+  This includes an upgrade to jep version 3.8.2
 
 #### Known Issues
+- None
