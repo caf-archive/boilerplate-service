@@ -578,7 +578,7 @@
                             <alias>boilerplate-worker</alias>
                             <name>${cafBoilplateWorkerContainerName}</name>
                             <build>
-                                <from>cafapi/opensuse-jeptalon:1</from>
+                                <from>cafinternal/prereleases:opensuse-jeptalon-1.3.0-SNAPSHOT</from>
                                 <ports>
                                     <port>8080</port>
                                     <port>8081</port>
