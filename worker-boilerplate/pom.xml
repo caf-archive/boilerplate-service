@@ -91,7 +91,7 @@
             <artifactId>util-email-content-segregation</artifactId>
         </dependency>
         <dependency>
-            <groupId>mrj0</groupId>
+            <groupId>black.ninia</groupId>
             <artifactId>jep</artifactId>
         </dependency>
         <dependency>
