@@ -30,6 +30,13 @@
     <groupId>com.github.cafdataprocessing</groupId>
     <artifactId>boilerplate-db-container</artifactId>
     <packaging>pom</packaging>
+    
+    <properties>
+        <bp.database.host>bp-integrationtests-postgres</bp.database.host>
+        <bp.database.username>postgres</bp.database.username>
+        <bp.database.password>root</bp.database.password>
+        <bp.database.name>boilerplate</bp.database.name>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -42,14 +49,38 @@
 
     <build>
         <plugins>
+            <!--Run integration tests.-->
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test-db-installed</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>false</skip>
+                            <environmentVariables>
+                                <BP_DATABASE_URL>jdbc:postgresql://${docker.host.address}:${postgres.db.port}/${bp.database.name}</BP_DATABASE_URL>
+                                <BP_DATABASE_USERNAME>${bp.database.username}</BP_DATABASE_USERNAME>
+                                <BP_DATABASE_PASSWORD>${bp.database.password}</BP_DATABASE_PASSWORD>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>${fabric8.docker.maven.version}</version>
                 <executions>
                     <execution>
-                        <id>build container</id>
-                        <phase>install</phase>
+                        <id>docker-build</id>
+                        <phase>compile</phase>
                         <goals>
                             <goal>build</goal>
                         </goals>
@@ -58,13 +89,27 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>upload container package</id>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>docker-push</id>
                         <phase>deploy</phase>
                         <goals>
                             <goal>push</goal>
                         </goals>
                         <configuration>
-                            <skip>false</skip>
+                            <filter>boilerplate-liquibase-container</filter>
                         </configuration>
                     </execution>
                 </executions>
@@ -73,6 +118,53 @@
                     <autoPull>always</autoPull>
                     <logDate>default</logDate>
                     <images>
+                        <!-- Postgres DB for installing BP PG DB container util mode against -->
+                        <image>
+                            <alias>boilerplate-integrationtests-postgres</alias>
+                            <name>postgres:9.6</name>
+                            <run>
+                                <ports>
+                                    <port>${postgres.db.port}:5432</port>
+                                </ports>
+                                <env>
+                                    <POSTGRES_PASSWORD>${bp.database.password}</POSTGRES_PASSWORD>
+                                    <POSTGRES_USER>${bp.database.username}</POSTGRES_USER>
+                                    <POSTGRES_DB>${bp.database.name}</POSTGRES_DB>
+                                </env>
+                                <wait>
+                                    <log>PostgreSQL init process complete</log>
+                                    <time>120000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                            </run>
+                        </image>
+                        <!-- Run old version of cs postgres container against postgres database to install cs schema. -->
+                        <image>
+                            <alias>boilerplate-liquibase-container-old</alias>
+                            <name>cafdataprocessing/boilerplate-db-installer:2.3</name>
+                            <run>
+                                <links>
+                                    <link>boilerplate-integrationtests-postgres</link>
+                                </links>
+                                <env>
+                                    <POSTGRES_DB>boilerplate</POSTGRES_DB>
+                                </env>
+                                <cmd>
+                                    java -jar /boilerplate-db.jar -fd -db.user ${bp.database.username} -db.pass ${bp.database.password} -db.name ${bp.database.name} -db.connection jdbc:postgresql://boilerplate-integrationtests-postgres:5432 -log debug
+                                </cmd>
+                                <wait>
+                                    <log>DB update finished.</log>
+                                    <time>120000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                            </run>
+                        </image>
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
                             <name>${cafBoilerplateDbInstallerContainerName}</name>
@@ -102,11 +194,39 @@
                                     </inline>
                                 </assembly>
                             </build>
+                            <run>
+                                <links>
+                                    <link>boilerplate-integrationtests-postgres</link>
+                                </links>
+                                <env>
+                                    <POSTGRES_DB>boilerplate</POSTGRES_DB>
+                                </env>
+                                <cmd>
+                                    java -jar /boilerplate-db.jar -db.user ${bp.database.username} -db.pass ${bp.database.password} -db.name ${bp.database.name} -db.connection jdbc:postgresql://boilerplate-integrationtests-postgres:5432 -log debug
+                                </cmd>
+                                <wait>
+                                    <log>DB update finished.</log>
+                                    <time>120000</time>
+                                    <shutdown>500</shutdown>
+                                </wait>
+                                <log>
+                                    <enabled>true</enabled>
+                                </log>
+                            </run>
                         </image>
                     </images>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>use-default-fixed-ports</id>
+            <properties>
+                <postgres.db.port>5432</postgres.db.port>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
