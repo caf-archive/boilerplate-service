@@ -118,7 +118,7 @@
                     <autoPull>always</autoPull>
                     <logDate>default</logDate>
                     <images>
-                        <!-- Postgres DB for installing BP PG DB container util mode against -->
+                        <!-- Postgres DB for installing BP PG DB container against -->
                         <image>
                             <alias>boilerplate-integrationtests-postgres</alias>
                             <name>postgres:9.6</name>
@@ -141,7 +141,7 @@
                                 </log>
                             </run>
                         </image>
-                        <!-- Run old version of cs postgres container against postgres database to install cs schema. -->
+                        <!-- Run old version of boilerplate db installer container against postgres database to install boilerplate schema. -->
                         <image>
                             <alias>boilerplate-liquibase-container-old</alias>
                             <name>cafdataprocessing/boilerplate-db-installer:2.3</name>
@@ -165,6 +165,7 @@
                                 </log>
                             </run>
                         </image>
+                        <!-- Run current version of boilerplate db installer container against postgres database to upgrade boilerplate schema. -->
                         <image>
                             <alias>boilerplate-liquibase-container</alias>
                             <name>${cafBoilerplateDbInstallerContainerName}</name>
