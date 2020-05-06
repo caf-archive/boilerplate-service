@@ -281,7 +281,7 @@
                             <alias>boilerplate-api-container</alias>
                             <name>${cafBoilerplateApiContainerName}</name>
                             <build>
-                                <from>cafapi/opensuse-tomcat:4</from>
+                                <from>cafinternal/prereleases:opensuse-tomcat-5.0.0-SNAPSHOT</from>
                                 <labels>
                                     <Build.Number>${project.version}</Build.Number>
                                     <Build.Date>${maven.build.timestamp}</Build.Date>
