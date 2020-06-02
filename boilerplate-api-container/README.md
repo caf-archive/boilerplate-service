@@ -1,7 +1,7 @@
 ## Boilerplate Web API Container
 
 This is a docker container for the Boilerplate web service. It consists of a Tomcat web server that connects to the database specified in the Marathon JSON files.
-It uses the java:8 base image.
+It uses the [openSUSE Tomcat with Java 11 base image](https://github.com/CAFapi/opensuse-tomcat-jre11-image).
 
 ### Configuration
 
