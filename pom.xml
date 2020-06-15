@@ -80,7 +80,7 @@
         <gitRepo>https://github.com/CAFDataProcessing/boilerplate-service</gitRepo>
         <enforceCorrectDependencies>true</enforceCorrectDependencies>
         <hibernate.version>4.3.8.Final</hibernate.version>
-        <spring.version>5.0.4.RELEASE</spring.version>
+        <spring.version>5.2.7.RELEASE</spring.version>
         <swagger.version>1.5.5</swagger.version>
     </properties>
 
