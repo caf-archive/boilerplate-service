@@ -170,7 +170,7 @@
                             <alias>boilerplate-liquibase-container</alias>
                             <name>${cafBoilerplateDbInstallerContainerName}</name>
                             <build>
-                                <from>cafapi/opensuse-jre11:2</from>
+                                <from>cafinternal/prereleases:opensuse-jre11-3.1.0-SNAPSHOT</from>
                                 <labels>
                                     <Build.Number>2.4.0-SNAPSHOT</Build.Number>
                                     <Build.Date>${maven.build.timestamp}</Build.Date>
