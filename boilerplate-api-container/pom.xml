@@ -79,42 +79,6 @@
 
     <profiles>
         <profile>
-            <id>integration-test</id>
-            <activation>
-                <property>
-                    <name>RE_BUILD_TYPE</name>
-                    <value>continuous</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.fabric8</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <version>${fabric8.docker.maven.version}</version>
-                        <executions>
-                            <execution>
-                                <id>start</id>
-                                <phase>pre-integration-test</phase>
-                                <goals>
-                                    <goal>build</goal>
-                                    <goal>start</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>stop</id>
-                                <phase>post-integration-test</phase>
-                                <goals>
-                                    <goal>stop</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
             <id>use-default-fixed-ports</id>
             <properties>
                 <boilerplate.adminport>5555</boilerplate.adminport>
@@ -123,43 +87,6 @@
                 </db.connection>
             </properties>
         </profile>
-
-        <profile>
-            <id>nightly-test</id>
-            <activation>
-                <property>
-                    <name>RE_BUILD_TYPE</name>
-                    <value>release</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.fabric8</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <version>${fabric8.docker.maven.version}</version>
-                        <executions>
-                            <execution>
-                                <id>start</id>
-                                <phase>pre-integration-test</phase>
-                                <goals>
-                                    <goal>build</goal>
-                                    <goal>start</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>stop</id>
-                                <phase>post-integration-test</phase>
-                                <goals>
-                                    <goal>stop</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
     </profiles>
 
 
@@ -179,6 +106,7 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven.failsafe.version}</version>
                 <executions>
@@ -216,6 +144,21 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>${fabric8.docker.maven.version}</version>
                 <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
                     <execution>
                         <id>upload-docker-container</id>
                         <phase>deploy</phase>
