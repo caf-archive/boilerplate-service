@@ -179,7 +179,7 @@
                         <!-- pull in a normal postgres DB -->
                         <image>
                             <alias>boilerplate-integrationtests-postgres</alias>
-                            <name>postgres:11.7</name>
+                            <name>${dockerHubPublic}/library/postgres:11.7</name>
                             <run>
                                 <ports>
                                     <port>${postgres.db.port}:5432</port>
@@ -224,7 +224,7 @@
                             <alias>boilerplate-api-container</alias>
                             <name>${cafBoilerplateApiContainerName}</name>
                             <build>
-                                <from>cafapi/opensuse-tomcat-jre11:1</from>
+                                <from>${dockerHubPublic}/cafapi/opensuse-tomcat-jre11:1</from>
                                 <labels>
                                     <Build.Number>${project.version}</Build.Number>
                                     <Build.Date>${maven.build.timestamp}</Build.Date>

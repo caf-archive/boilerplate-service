@@ -197,7 +197,7 @@
                         <!-- Begin Boilerplate Database image -->
                         <image>
                             <alias>boilerplate-integrationtests-postgres</alias>
-                            <name>postgres:11.7</name>
+                            <name>${dockerHubPublic}/library/postgres:11.7</name>
                             <run>
                                 <ports>
                                     <port>${cafPostgresDbPort}:5432</port>

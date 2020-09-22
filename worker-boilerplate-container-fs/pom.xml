@@ -334,7 +334,7 @@
                     <images>
                         <image>
                             <alias>webdav</alias>
-                            <name>cloudesire/webdav</name>
+                            <name>${dockerHubPublic}/cloudesire/webdav</name>
                             <run>
                                 <volumes>
                                     <bind>
@@ -363,7 +363,7 @@
                         <!-- Start Rabbit image -->
                         <image>
                             <alias>rabbitmq</alias>
-                            <name>rabbitmq:3-management</name>
+                            <name>${dockerHubPublic}/library/rabbitmq:3-management</name>
                             <run>
                                 <ports>
                                     <port>${rabbitmq.ctrl.port}:15672</port>
@@ -409,7 +409,7 @@
                         <!-- Begin Boilerplate Database image -->
                         <image>
                             <alias>boilerplate-integrationtests-postgres</alias>
-                            <name>postgres:11.7</name>
+                            <name>${dockerHubPublic}/library/postgres:11.7</name>
                             <run>
                                 <ports>
                                     <port>${postgres.db.port}:5432</port>
@@ -542,7 +542,7 @@
                             <alias>boilerplate-worker</alias>
                             <name>${cafBoilplateWorkerContainerName}</name>
                             <build>
-                                <from>cafapi/opensuse-jeptalon:3</from>
+                                <from>${dockerHubPublic}/cafapi/opensuse-jeptalon:3</from>
                                 <ports>
                                     <port>8080</port>
                                     <port>8081</port>

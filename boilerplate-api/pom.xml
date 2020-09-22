@@ -205,13 +205,12 @@
                 </executions>
                 <configuration>
                     <verbose>true</verbose>
-                    <autoPull>always</autoPull>
                     <logDate>default</logDate>
                     <images>
                         <!-- pull in a normal postgres DB -->
                         <image>
                             <alias>boilerplate-integrationtests-postgres</alias>
-                            <name>postgres:11.7</name>
+                            <name>${dockerHubPublic}/library/postgres:11.7</name>
                             <run>
                                 <ports>
                                     <port>${postgres.db.port}:5432</port>
