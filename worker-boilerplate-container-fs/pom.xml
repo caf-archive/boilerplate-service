@@ -388,6 +388,7 @@
                             <alias>config</alias>
                             <name>${project.artifactId}-test-config:${project.version}</name>
                             <build>
+                                <from>${dockerHubPublic}/library/busybox:latest</from>
                                 <assembly>
                                     <basedir>/config</basedir>
                                     <inline>
@@ -492,6 +493,7 @@
                             <alias>util-data</alias>
                             <name>${project.artifactId}-test-data:${project.version}</name>
                             <build>
+                                <from>${dockerHubPublic}/library/busybox:latest</from>
                                 <assembly>
                                     <basedir>/util-data</basedir>
                                     <inline>
