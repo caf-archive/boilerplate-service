@@ -391,6 +391,7 @@
                                 <from>${dockerHubPublic}/library/busybox:latest</from>
                                 <assembly>
                                     <basedir>/config</basedir>
+                                    <exportTargetDir>true</exportTargetDir>
                                     <inline>
                                         <fileSets>
                                             <fileSet>
@@ -496,6 +497,7 @@
                                 <from>${dockerHubPublic}/library/busybox:latest</from>
                                 <assembly>
                                     <basedir>/util-data</basedir>
+                                    <exportTargetDir>true</exportTargetDir>
                                     <inline>
                                         <fileSets>
                                             <fileSet>
