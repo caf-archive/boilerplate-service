@@ -77,7 +77,6 @@
         <dockerHubOrganization>cafdataprocessing</dockerHubOrganization>
         <dockerDataProcessingOrg>${dockerImagePrefix}${dockerHubOrganization}${dockerOrgSeperator}</dockerDataProcessingOrg>
         <dockerProjectVersion>${dockerVersionSeperator}${project.version}</dockerProjectVersion>
-        <gitRepo>https://github.com/CAFDataProcessing/boilerplate-service</gitRepo>
         <enforceCorrectDependencies>true</enforceCorrectDependencies>
         <fabric8.docker.maven.version>0.26.1</fabric8.docker.maven.version>
         <hibernate.version>4.3.8.Final</hibernate.version>
@@ -316,7 +315,7 @@
     <scm>
         <connection>scm:git:https://github.com/CAFDataProcessing/boilerplate-service.git</connection>
         <developerConnection>scm:git:https://github.com/CAFDataProcessing/boilerplate-service.git</developerConnection>
-        <url>${gitRepo}</url>
+        <url>https://github.com/CAFDataProcessing/boilerplate-service</url>
     </scm>
     
 </project>

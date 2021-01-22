@@ -146,13 +146,6 @@
                             <name>${cafBoilerplateDbInstallerContainerName}</name>
                             <build>
                                 <from>${dockerHubPublic}/cafapi/opensuse-jre11:3</from>
-                                <labels>
-                                    <Build.Number>2.4.0-SNAPSHOT</Build.Number>
-                                    <Build.Date>${maven.build.timestamp}</Build.Date>
-                                    <Git.Repo>${gitRepo}</Git.Repo>
-                                    <Git.Branch>${git.branch}</Git.Branch>
-                                    <Git.Commit>${git.revision}</Git.Commit>
-                                </labels>
                                 <assembly>
                                     <basedir>/</basedir>
                                     <inline>
