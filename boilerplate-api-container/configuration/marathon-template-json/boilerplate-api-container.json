@@ -5,7 +5,7 @@
   "instances": "${boilerplate-admin-instances}",
   "container": {
     "docker": {
-      "image": "cafinternal/boilerplate-api:${boilerplate-admin-version}",
+      "image": "cafdataprocessing/boilerplate-api:${boilerplate-admin-version}",
       "network": "BRIDGE",
       "portMappings": [
         {
