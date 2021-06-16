@@ -73,7 +73,7 @@ public class BoilerplateWorker extends AbstractWorker<BoilerplateWorkerTask, Boi
                              String baseUrl, Codec codec, int resultSizeLimit, String defaultReplacementText,
                              ExecutorService jepThreadPool, LoadingCache<Pair<String, Long>, BoilerplateExpression> expressionCache,
                              LoadingCache<Pair<String, Long>, Tag> tagCache, LoadingCache<Pair<String, Long>,
-                                 List<BoilerplateExpression>> tagExpressionCache) throws InvalidTaskException, TaskRejectedException {
+                             List<BoilerplateExpression>> tagExpressionCache) throws InvalidTaskException, TaskRejectedException {
         super(task, resultQueue, codec, workerTaskData);
         this.dataStore = dataStore;
         this.resultSizeLimit = resultSizeLimit;
