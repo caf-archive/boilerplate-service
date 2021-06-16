@@ -70,11 +70,11 @@ public class BoilerplateWorkerFactory extends AbstractWorkerFactory<BoilerplateW
     }
 
     @Override
-    protected Worker createWorker(BoilerplateWorkerTask boilerplateWorkerTask) throws TaskRejectedException, InvalidTaskException {
-        return new BoilerplateWorker(boilerplateWorkerTask, getDataStore(), getConfiguration().getOutputQueue(),
+    protected Worker createWorker(BoilerplateWorkerTask boilerplateWorkerTask, final WorkerTaskData workerTaskData)
+        throws TaskRejectedException, InvalidTaskException {
+        return new BoilerplateWorker(boilerplateWorkerTask, workerTaskData, getDataStore(), getConfiguration().getOutputQueue(),
                 getConfiguration().getBaseUrl(), getCodec(), getConfiguration().getResultSizeLimit(),
-                getConfiguration().getDefaultReplacementText(), jepThreadPool,
-                expressionCache, tagCache, tagExpressionCache);
+                getConfiguration().getDefaultReplacementText(), jepThreadPool, expressionCache, tagCache, tagExpressionCache);
     }
 
     @Override

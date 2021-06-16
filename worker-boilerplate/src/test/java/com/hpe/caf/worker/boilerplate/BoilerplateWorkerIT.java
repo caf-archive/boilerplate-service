@@ -69,6 +69,8 @@ public class BoilerplateWorkerIT {
     private static LoadingCache<Pair<String, Long>, Tag> tagCache;
     @Mock
     private DataStore dataStore;
+    @Mock
+    private WorkerTaskData workerTaskData;
 
     @Before
     public void setup() {
@@ -259,8 +261,8 @@ public class BoilerplateWorkerIT {
         //  Test expression cache error handling.
         InvalidTaskException exception = null;
         try {
-            worker = new BoilerplateWorker(task, dataStore, "results", connectionString, new JsonCodec(), 1000, "<boilerplate content>", null,
-                    errorCache, tagCache, tagExpressionCache);
+            worker = new BoilerplateWorker(task, workerTaskData, dataStore, "results", connectionString, new JsonCodec(), 1000,
+                    "<boilerplate content>", null, errorCache, tagCache, tagExpressionCache);
         } catch (InvalidTaskException ite) {
             exception = ite;
         }
@@ -277,8 +279,8 @@ public class BoilerplateWorkerIT {
 
         TaskRejectedException taskRejectedException = null;
         try {
-            worker = new BoilerplateWorker(task, dataStore, "results", connectionString, new JsonCodec(), 1000, "<boilerplate content>", null,
-                    errorCache, tagCache, tagExpressionCache);
+            worker = new BoilerplateWorker(task, workerTaskData, dataStore, "results", connectionString, new JsonCodec(), 1000,
+                    "<boilerplate content>", null, errorCache, tagCache, tagExpressionCache);
         } catch (TaskRejectedException e) {
             taskRejectedException = e;
         }
@@ -295,8 +297,8 @@ public class BoilerplateWorkerIT {
 
         taskRejectedException = null;
         try {
-            worker = new BoilerplateWorker(task, dataStore, "results", connectionString, new JsonCodec(), 1000, "<boilerplate content>", null,
-                    errorCache, tagCache, tagExpressionCache);
+            worker = new BoilerplateWorker(task, workerTaskData, dataStore, "results", connectionString, new JsonCodec(), 1000,
+                    "<boilerplate content>", null, errorCache, tagCache, tagExpressionCache);
         } catch (TaskRejectedException e) {
             taskRejectedException = e;
         }
@@ -340,8 +342,8 @@ public class BoilerplateWorkerIT {
         //  Test expression cache error handling.
         InvalidTaskException exception = null;
         try {
-            worker = new BoilerplateWorker(task, dataStore, "results", connectionString, new JsonCodec(), 1000, "<boilerplate content>", null,
-                    expressionCache, errorCache, tagExpressionCache);
+            worker = new BoilerplateWorker(task, workerTaskData, dataStore, "results", connectionString, new JsonCodec(), 1000,
+                    "<boilerplate content>", null, expressionCache, errorCache, tagExpressionCache);
         } catch (InvalidTaskException ite) {
             exception = ite;
         }
@@ -358,8 +360,8 @@ public class BoilerplateWorkerIT {
 
         TaskRejectedException taskRejectedException = null;
         try {
-            worker = new BoilerplateWorker(task, dataStore, "results", connectionString, new JsonCodec(), 1000, "<boilerplate content>", null,
-                    expressionCache, errorCache, tagExpressionCache);
+            worker = new BoilerplateWorker(task, workerTaskData, dataStore, "results", connectionString, new JsonCodec(), 1000,
+                    "<boilerplate content>", null, expressionCache, errorCache, tagExpressionCache);
         } catch (TaskRejectedException e) {
             taskRejectedException = e;
         }
@@ -376,8 +378,8 @@ public class BoilerplateWorkerIT {
 
         taskRejectedException = null;
         try {
-            worker = new BoilerplateWorker(task, dataStore, "results", connectionString, new JsonCodec(), 1000, "<boilerplate content>", null,
-                    expressionCache, errorCache, tagExpressionCache);
+            worker = new BoilerplateWorker(task, workerTaskData, dataStore, "results", connectionString, new JsonCodec(), 1000,
+                    "<boilerplate content>", null, expressionCache, errorCache, tagExpressionCache);
         } catch (TaskRejectedException e) {
             taskRejectedException = e;
         }
@@ -508,8 +510,8 @@ public class BoilerplateWorkerIT {
     }
 
     private BoilerplateWorker createBoilerplateWorker(BoilerplateWorkerTask task) throws InvalidTaskException, TaskRejectedException {
-        return new BoilerplateWorker(task, dataStore, "results", connectionString, new JsonCodec(), 1000, "<boilerplate content>", null,
-                expressionCache, tagCache, tagExpressionCache);
+        return new BoilerplateWorker(task, workerTaskData, dataStore, "results", connectionString, new JsonCodec(), 1000,
+                "<boilerplate content>", null, expressionCache, tagCache, tagExpressionCache);
     }
 
     private Tag create(Tag tag) {
