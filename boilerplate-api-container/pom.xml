@@ -224,7 +224,7 @@
                             <alias>boilerplate-api-container</alias>
                             <name>${cafBoilerplateApiContainerName}</name>
                             <build>
-                                <from>${dockerHubPublic}/cafapi/opensuse-tomcat-jre11:2</from>
+                                <from>${dockerHubPublic}/cafapi/prereleases:opensuse-tomcat-jre11-2.5.0-SNAPSHOT</from>
                                 <healthCheck>
                                     <mode>none</mode>
                                 </healthCheck>

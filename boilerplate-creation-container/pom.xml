@@ -77,7 +77,7 @@
                             <alias>boilerplate-creation-container</alias>
                             <name>${cafBoilerplateCreationContainerName}</name>
                             <build>
-                                <from>${dockerHubPublic}/cafapi/opensuse-jre11:3</from>
+                                <from>${dockerHubPublic}/cafapi/prereleases:opensuse-jre11-3.5.0-SNAPSHOT</from>
                                 <assembly>
                                     <basedir>/</basedir>
                                     <inline>
