@@ -69,12 +69,12 @@ public class BoilerplateWorker extends AbstractWorker<BoilerplateWorkerTask, Boi
 
     private static Logger logger = LoggerFactory.getLogger(BoilerplateWorker.class);
 
-    public BoilerplateWorker(BoilerplateWorkerTask task, DataStore dataStore, String resultQueue, String baseUrl,
-                             Codec codec, int resultSizeLimit, String defaultReplacementText,
+    public BoilerplateWorker(BoilerplateWorkerTask task, final WorkerTaskData workerTaskData, DataStore dataStore, String resultQueue,
+                             String baseUrl, Codec codec, int resultSizeLimit, String defaultReplacementText,
                              ExecutorService jepThreadPool, LoadingCache<Pair<String, Long>, BoilerplateExpression> expressionCache,
-                             LoadingCache<Pair<String, Long>, Tag> tagCache,
-                             LoadingCache<Pair<String, Long>, List<BoilerplateExpression>> tagExpressionCache) throws InvalidTaskException, TaskRejectedException {
-        super(task, resultQueue, codec);
+                             LoadingCache<Pair<String, Long>, Tag> tagCache, LoadingCache<Pair<String, Long>,
+                             List<BoilerplateExpression>> tagExpressionCache) throws InvalidTaskException, TaskRejectedException {
+        super(task, resultQueue, codec, workerTaskData);
         this.dataStore = dataStore;
         this.resultSizeLimit = resultSizeLimit;
         processor = new RegexProcessor();

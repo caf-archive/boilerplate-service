@@ -55,6 +55,6 @@ public class LogHelper {
         if(string==null){
             return null;
         }
-        return CharMatcher.BREAKING_WHITESPACE.removeFrom(string);
+        return CharMatcher.breakingWhitespace().removeFrom(string);
     }
 }
